@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 
-@interface WelcomeViewController : ViewController <loginDelegate,regDelegate,dbConnDelegate,imageDelegate>
+@interface WelcomeViewController : ViewController <loginDelegate,regDelegate,dbConnDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *regBT;
 @property (strong, nonatomic) IBOutlet UIButton *loginBt;

@@ -29,7 +29,7 @@
     [self.skipBt.layer setMasksToBounds:YES];
     
     self.countryTXT.text = self.countryText;
-    
+    [self.view setUserInteractionEnabled:YES];
     
 }
 

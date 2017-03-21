@@ -27,7 +27,7 @@
     //Image Shadow
     self.imgView.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.imgView.layer.shadowOpacity =.4;
-    self.imgView.layer.shadowRadius = (frame.size.height)/16;
+    self.imgView.layer.shadowRadius = 5;
     
     
 }

@@ -72,7 +72,6 @@
                                          
                                          // Parse the JSON that came in
                                          NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self._downloadedData options:NSJSONReadingAllowFragments error:&error];
-                                         NSLog(@"appdata = %@",jsonArray);
                                          
                                          //Creating a PList file
                                          app.appData = [NSMutableDictionary
@@ -751,7 +750,6 @@
                                          stateImage = [items valueForKey:@"image"];
                                          
                                          PlaceObject *PO = [[PlaceObject alloc]initWithState:state image:stateImage code:stateCode];
-                                         [PO downloadImages:stateImage :0 :state :0];
 
                                          if (self.delegate)
                                          {

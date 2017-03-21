@@ -151,9 +151,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rlG-Qo-yyF">
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rlG-Qo-yyF">
                                     <rect key="frame" x="10" y="102" width="282" height="29"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="28" id="IGM-ix-az6"/>
                                         <constraint firstAttribute="width" constant="282" id="gt2-GL-Yba"/>
@@ -162,7 +162,7 @@
                                         <segment title="Return"/>
                                         <segment title="OneWay"/>
                                     </segments>
-                                    <color key="tintColor" red="0.52052964499999999" green="0.71119653510000003" blue="0.4031109021" alpha="0.90164877300000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" red="0.063797469780000005" green="0.3158778183" blue="0.23731270900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
                                         <action selector="flightTypeAction:" destination="Tgt-Jm-VLk" eventType="valueChanged" id="bLO-7U-VHq"/>
                                     </connections>
@@ -788,7 +788,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MQZ-Rj-moa" id="5lT-fv-t48">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szj-Sy-ewF">
@@ -952,7 +952,7 @@
                                         <rect key="frame" x="0.0" y="170" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eqt-bl-6Aw" id="ZCw-FD-YRm">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sh-XC-hAl">
@@ -987,7 +987,7 @@
                                         <rect key="frame" x="0.0" y="290" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UGa-Mh-Cf5" id="QfI-vf-BoN">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ny-JK-zjk">
@@ -2107,7 +2107,7 @@
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Home" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" id="nRo-8t-gbf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="v2H-Lk-wdH">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" id="v2H-Lk-wdH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                         <color key="tintColor" red="0.92857146260000001" green="0.55952382089999997" blue="0.1111111119" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2409,10 +2409,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="564" id="rSF-QN-xnL"/>
                                 </constraints>
-                                <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powered_by_expedia.png" id="f68-HR-0AD">
+                                <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Expedia_TripAdvisor.png" id="f68-HR-0AD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </imageView>
                             </tableView>
                         </subviews>
@@ -2457,7 +2457,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vmWs.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eaT-3Z-TQa">
+                            <imageView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vmWs.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eaT-3Z-TQa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYa-gz-0Ta">
@@ -3456,7 +3456,7 @@
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Favourites" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" id="Cre-g6-jiu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="QGf-ZO-agi">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" id="QGf-ZO-agi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                         <color key="tintColor" red="0.92857146260000001" green="0.55952382089999997" blue="0.1111111119" alpha="0.95362825920000005" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3485,7 +3485,7 @@
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Settings" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" id="MYV-q0-sel" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="abs-RV-EXX">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" id="abs-RV-EXX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="tintColor" red="0.92857146260000001" green="0.55952382089999997" blue="0.1111111119" alpha="0.95362825920000005" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3871,7 +3871,7 @@
             <objects>
                 <navigationController autoresizesArchivedViewToFullSize="NO" title="Bookings" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" id="n23-Vc-Wtr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="JnV-Nd-Tc5">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" id="JnV-Nd-Tc5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                         <color key="tintColor" red="0.92857146263122559" green="0.5595238208770752" blue="0.1111111119389534" alpha="0.95362825920245398" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4545,7 +4545,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NPQ-jI-B4O" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jtw-Aw-oHt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jtw-Aw-oHt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4560,6 +4560,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Expedia_TripAdvisor.png" width="2923" height="412"/>
         <image name="PoweredbySkyscanner_Inline_Gray.png" width="656" height="133"/>
         <image name="QR_code_filled.png" width="50" height="50"/>
         <image name="address_book.png" width="100" height="100"/>
@@ -4600,7 +4601,6 @@
         <image name="password.png" width="100" height="100"/>
         <image name="phone.png" width="100" height="100"/>
         <image name="phone_filled.png" width="50" height="50"/>
-        <image name="powered_by_expedia.png" width="623" height="155"/>
         <image name="poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png" width="300" height="50"/>
         <image name="refresh.png" width="96" height="96"/>
         <image name="right_filled.png" width="32" height="32"/>

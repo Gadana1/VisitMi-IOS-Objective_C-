@@ -258,8 +258,8 @@ static int curveValues[] = {
             self.tableView.rowHeight = 170;
             [self.tableView registerNib:[UINib nibWithNibName:@"HotelTableViewCell" bundle:nil] forCellReuseIdentifier:@"HotelCell"];
             
-            UIImageView *footerImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"powered_by_expedia.png"]];
-            [footerImg setBackgroundColor:[UIColor whiteColor]];
+            UIImageView *footerImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Expedia_TripAdvisor.png"]];
+            [footerImg setBackgroundColor:[UIColor clearColor]];
             
             footerImg.contentMode = UIViewContentModeScaleAspectFit;
             CGRect frame = footerImg.frame;
@@ -669,6 +669,7 @@ didFailAutocompleteWithError:(NSError *)error
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.tableView reloadData];
     
 }
 
@@ -1000,16 +1001,15 @@ didFailAutocompleteWithError:(NSError *)error
         {
             if(index < [self.displayRegionArr count])
             {
-                self.PO = (PlaceObject *)[self.displayRegionArr objectAtIndex:index];
-                self.PO.img = imageDATA;
+                ((PlaceObject *)[self.displayRegionArr objectAtIndex:index]).img = imageDATA;
             }
         }
         else
         {
             if(index < [self.searchArr count])
             {
-                self.PO = (PlaceObject *)[self.searchArr objectAtIndex:index];
-                self.PO.img = imageDATA;
+                ((PlaceObject *)[self.searchArr objectAtIndex:index]).img = imageDATA;
+
             }
 
         }
@@ -1023,16 +1023,15 @@ didFailAutocompleteWithError:(NSError *)error
             
             if(index < [self.displayRegionArr count])
             {
-                self.TO = (TourObject *)[self.displayRegionArr objectAtIndex:index];
-                self.TO.thumbnailData = imageDATA;
+                ((TourObject *)[self.displayRegionArr objectAtIndex:index]).thumbnailData = imageDATA;
             }
         }
         else
         {
             if(index < [self.searchArr count])
             {
-                self.TO = (TourObject *)[self.searchArr objectAtIndex:index];
-                self.TO.thumbnailData = imageDATA;
+                ((TourObject *)[self.searchArr objectAtIndex:index]).thumbnailData = imageDATA;
+
             }
 
         }
@@ -1042,8 +1041,7 @@ didFailAutocompleteWithError:(NSError *)error
     {
         if(index < [self.displayRegionArr count])
         {
-            self.HO = (HotelObject *)[self.displayRegionArr objectAtIndex:index];
-            self.HO.thumbnailData = imageDATA;
+            ((HotelObject *)[self.displayRegionArr objectAtIndex:index]).thumbnailData = imageDATA;
         }
         
 
@@ -1354,6 +1352,7 @@ didFailAutocompleteWithError:(NSError *)error
             //Customize Image view
             if (self.HO.thumbnailData !=NULL) {
                 
+                self.hotelCell.hotelthumbnail.contentMode = UIViewContentModeScaleToFill;
                 [self.hotelCell.hotelthumbnail setImage:[UIImage imageWithData:self.HO.thumbnailData]];
                 if(self.hotelCell.hotelthumbnail.image==NULL)
                 {

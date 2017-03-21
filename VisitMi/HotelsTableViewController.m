@@ -408,6 +408,7 @@ NSArray* tmpArray;
         //Customize Image view
         if (self.HO.thumbnailData !=NULL) {
             
+            _cell.hotelthumbnail.contentMode = UIViewContentModeScaleToFill;
             [_cell.hotelthumbnail setImage:[UIImage imageWithData:self.HO.thumbnailData]];
             if(_cell.hotelthumbnail.image==NULL)
             {

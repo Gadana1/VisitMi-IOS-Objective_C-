@@ -211,6 +211,39 @@
     self.countryTableView.frame = self.view.frame;
     [self.view addSubview:self.countryTableView];
     
+    int i=0;
+    for(PlaceObject *PO in app.countries)
+    {
+        
+        //Download Country Flag
+        NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",app.serverAddress,PO.country_Code];
+        
+        PO.delegate = self;
+        [PO downloadImages:urlStr :0 :PO.country_Code :i];
+        
+        i++;
+    }
+
+    
+}
+
+-(void)imagesDownloaded:(NSData *)imageDATA :(NSInteger)index
+{
+    app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    if(index < [app.countries  count])
+    {
+        ((PlaceObject *)[app.countries objectAtIndex:index]).img = imageDATA;
+        
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void)
+                   {
+                       [self.countryTableView reloadData];
+
+                   });
+    
+    
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -235,10 +268,7 @@
         [cCell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
     
-    //Download Country Flag
-    NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",app.serverAddress,PO.country_Code];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    cCell.countryFlag.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+    cCell.countryFlag.image =[UIImage imageWithData:PO.img];
     
     return cCell;
     
@@ -802,70 +832,78 @@
     
 }
 
--(BOOL)checkForUpdates
+-(BOOL)detailsUpdates
 {
     //Check if name or phone number updated
-    if (![self.firstnameTXT.text isEqualToString:app.userDetails[@"FirstName"]])
+    if ([self.firstnameTXT.text isEqualToString:app.userDetails[@"FirstName"]])
     {
-        if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
-            
-            NSLog(@" Update Available ");
-            
-            isUpdated = true;
-            
-        }
-        else isUpdated = false;
-
-    }
-    else if (![self.lastnameTXT.text isEqualToString:app.userDetails[@"LastName"]])
-    {
-        if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
-            
-            NSLog(@" Update Available ");
-            
-            isUpdated = true;
-            
-        }
-        else isUpdated = false;
-        
-    }
-    else if (![[NSString stringWithFormat:@"%@%@",dialingCode,self.phoneTXT.text] isEqualToString:app.userDetails[@"Phone"]])
-    {
-        if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
-            
-            NSLog(@" Update Available ");
-            
-            isUpdated = true;
-            
-        }
-        else isUpdated = false;
-        
-    }
-    else
-    {
-        //check if password updated
-        if (self.passwordTXT.text==NULL ||
-            [self.passwordTXT.text isEqualToString:@""] ||
-            [self.passwordTXT.text isKindOfClass:[NSNull class]])
+        if ([self.lastnameTXT.text isEqualToString:app.userDetails[@"LastName"]])
         {
             
-            isUpdated = false;
-            
-        }
-        else
-        {
-            if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
+            if ([[NSString stringWithFormat:@"%@%@",dialingCode,self.phoneTXT.text] isEqualToString:app.userDetails[@"Phone"]])
+            {
+                isUpdated = false;
+                
+            }
+            else if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
                 
                 NSLog(@" Update Available ");
                 
                 isUpdated = true;
-
+                
             }
             else isUpdated = false;
 
+
             
         }
+        else if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text])
+        {
+            
+            NSLog(@" Update Available ");
+            
+            isUpdated = true;
+            
+        }
+        else isUpdated = false;
 
+
+    }
+    else if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
+            
+            NSLog(@" Update Available ");
+            
+            isUpdated = true;
+            
+    }
+   
+    
+    return isUpdated;
+    
+}
+-(BOOL)passwordUpdates
+{
+   
+    //check if password updated
+    if (self.passwordTXT.text==NULL ||
+        [self.passwordTXT.text isEqualToString:@""] ||
+        [self.passwordTXT.text isKindOfClass:[NSNull class]])
+    {
+        
+       return false;
+        
+    }
+    else
+    {
+        if ([self.passwordTXT.text isEqualToString:self.retypePassTXT.text]) {
+            
+            NSLog(@" Update Available ");
+            
+            return true;
+            
+        }
+        else return false;
+        
         
     }
     
@@ -873,12 +911,13 @@
     return isUpdated;
     
 }
+
 - (IBAction)doneAction:(id)sender
 {
     [self textFieldDidEndEditing:activeTextField];
     
     //Check if updates have been made
-    if ([self checkForUpdates])
+    if ([self detailsUpdates] || [self passwordUpdates])
     {
         
         if (doneFName && doneLName && doneNumber && donePassword && doneRetypePass)

@@ -29,6 +29,9 @@ UIActivityIndicatorView *loading ;
     
     loading = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [loading startAnimating];
+    [loading setHidesWhenStopped:YES];
+    
+    [self.view setUserInteractionEnabled:FALSE];
     
     loading.center = self.locTableView.center;
     [self.locTableView setBackgroundView:loading];
@@ -69,7 +72,8 @@ UIActivityIndicatorView *loading ;
     _locCell = [tableView dequeueReusableCellWithIdentifier:@"locCell" forIndexPath:indexPath];
     
     _locCell.loc_NameLB.text = place.state;
-    _locCell.loc_ImageView.image = [UIImage imageWithData:place.img];
+    _locCell.loc_ImageView.contentMode = place.img!=NULL?UIViewContentModeScaleToFill:UIViewContentModeScaleAspectFit;
+    _locCell.loc_ImageView.image = place.img!=NULL?[UIImage imageWithData:place.img]:[UIImage imageNamed:@"image_file.png"];
     
     return _locCell;
 }
@@ -114,15 +118,39 @@ UIActivityIndicatorView *loading ;
     NSLog(@"State delegate recieved");
     [self.locData addObject:placeObj];
     
+    PlaceObject *PO = (PlaceObject *)placeObj;
+    PO.delegate = self;
+    [PO downloadImages:PO.stateImage :0 :PO.state :self.locData.count-1];
+
+
     dispatch_async(dispatch_get_main_queue(), ^(void)
     {
+        
         [self.locTableView reloadData];
         [loading stopAnimating];
-                       
+        [self.view setUserInteractionEnabled:TRUE];
+
+        
     });
     
 }
 
+-(void)imagesDownloaded:(NSData *)imageDATA :(NSInteger)index
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void)
+                   {
+                       if(index < [self.locData  count])
+                       {
+                           ((PlaceObject *)[self.locData objectAtIndex:index]).img = imageDATA;
+                           
+                           [self.locTableView reloadData];
+                           
+                       }
+                   });
+    
+    
+}
 - (IBAction)skipAction:(id)sender
 {
     

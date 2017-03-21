@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AA995C63708990EF2D4E388 /* libPods-VisitMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB39D6C8EAD41444F4BD4CF /* libPods-VisitMi.a */; };
+		AAB3F6AB8B6D3D321903EE49 /* Pods_VisitMi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE350B321C8A330A62926B0D /* Pods_VisitMi.framework */; };
 		D503E8051BE28B1E00C1AC0B /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D503E8041BE28B1E00C1AC0B /* PlaceObject.m */; };
 		D503E8071BE2F22700C1AC0B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D503E8061BE2F22700C1AC0B /* MapKit.framework */; };
 		D503E8091BE2F24100C1AC0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D503E8081BE2F24100C1AC0B /* CoreGraphics.framework */; };
@@ -48,6 +48,7 @@
 		D517F1281C5FD9A90000502E /* HotelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D517F1261C5FD9A90000502E /* HotelTableViewCell.xib */; };
 		D52537191E1A9D4E00658CF3 /* DBConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D52537181E1A9D4E00658CF3 /* DBConnect.m */; };
 		D52537281E1D22DB00658CF3 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52537271E1D22DB00658CF3 /* WelcomeViewController.m */; };
+		D52562701E81AB3500500C12 /* Expedia_TripAdvisor.png in Resources */ = {isa = PBXBuildFile; fileRef = D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */; };
 		D52E76A41E6D329E00B68FE7 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = D52E76A31E6D329E00B68FE7 /* filter.png */; };
 		D53875171E1ED74000A8FC52 /* airport.png in Resources */ = {isa = PBXBuildFile; fileRef = D53875161E1ED74000A8FC52 /* airport.png */; };
 		D538751C1E1F58B000A8FC52 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538751B1E1F58B000A8FC52 /* SettingsTableViewController.m */; };
@@ -244,6 +245,7 @@
 /* Begin PBXFileReference section */
 		1839EF633A812E4CEBF12552 /* Pods-VisitMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisitMi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VisitMi/Pods-VisitMi.debug.xcconfig"; sourceTree = "<group>"; };
 		A1473E83656753C6388FE830 /* Pods-VisitMi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisitMi.release.xcconfig"; path = "Pods/Target Support Files/Pods-VisitMi/Pods-VisitMi.release.xcconfig"; sourceTree = "<group>"; };
+		AE350B321C8A330A62926B0D /* Pods_VisitMi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VisitMi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D503E8031BE28B1E00C1AC0B /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
 		D503E8041BE28B1E00C1AC0B /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
 		D503E8061BE2F22700C1AC0B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -311,6 +313,7 @@
 		D52537181E1A9D4E00658CF3 /* DBConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBConnect.m; sourceTree = "<group>"; };
 		D52537261E1D22DB00658CF3 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		D52537271E1D22DB00658CF3 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Expedia_TripAdvisor.png; path = ../../Downloads/Expedia_TripAdvisor.png; sourceTree = "<group>"; };
 		D52E76A31E6D329E00B68FE7 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
 		D5386F7C1E32AFB900AF2B6E /* DataDynamicTableTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataDynamicTableTableViewController.h; sourceTree = SOURCE_ROOT; };
 		D5386F7D1E32AFB900AF2B6E /* DataDynamicTableTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataDynamicTableTableViewController.m; sourceTree = SOURCE_ROOT; };
@@ -535,7 +538,6 @@
 		D5ED22191E397D6800EDB78E /* ImageSliderPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSliderPageView.m; sourceTree = "<group>"; };
 		D5ED221B1E3A03CE00EDB78E /* ImageSiderPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSiderPageViewController.h; sourceTree = "<group>"; };
 		D5ED221C1E3A03CE00EDB78E /* ImageSiderPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSiderPageViewController.m; sourceTree = "<group>"; };
-		DEB39D6C8EAD41444F4BD4CF /* libPods-VisitMi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VisitMi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,7 +554,7 @@
 				D50F72FE1BD89AE900C18E89 /* libsqlite3.tbd in Frameworks */,
 				D503E8071BE2F22700C1AC0B /* MapKit.framework in Frameworks */,
 				D50F72FD1BD88D5000C18E89 /* libsqlite3.0.tbd in Frameworks */,
-				5AA995C63708990EF2D4E388 /* libPods-VisitMi.a in Frameworks */,
+				AAB3F6AB8B6D3D321903EE49 /* Pods_VisitMi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,7 +597,7 @@
 				D503E8061BE2F22700C1AC0B /* MapKit.framework */,
 				D50F72FC1BD88D5000C18E89 /* libsqlite3.0.tbd */,
 				D51AE6AE1BD81F0A00C6680D /* libsqlite3.tbd */,
-				DEB39D6C8EAD41444F4BD4CF /* libPods-VisitMi.a */,
+				AE350B321C8A330A62926B0D /* Pods_VisitMi.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -604,6 +606,7 @@
 			isa = PBXGroup;
 			children = (
 				D5C1202A1E77ED02000FD07A /* PoweredbySkyscanner_Inline_Gray.png */,
+				D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */,
 				D5C120251E769734000FD07A /* airplane_take_off.png */,
 				D5C120231E76972D000FD07A /* airplane_landing.png */,
 				D5536F971D81EEE800477369 /* 1.5star.png */,
@@ -1064,6 +1067,8 @@
 				TargetAttributes = {
 					D5D551901BD3C13B0046C240 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = R72HY6CC7P;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1249,6 +1254,7 @@
 				D50C744C1D2DC1FE00A83802 /* SVWebViewController.bundle in Resources */,
 				D50C744A1D2DC1FE00A83802 /* SVWebViewController.strings in Resources */,
 				D56684CB1E1E4D9300A8D9B8 /* home.png in Resources */,
+				D52562701E81AB3500500C12 /* Expedia_TripAdvisor.png in Resources */,
 				D509E84B1BD4CF9400C94853 /* Main.storyboard in Resources */,
 				D58267951E2834FC0017CAE5 /* refresh_filled.png in Resources */,
 				D58920EB1D2C9AD2006CA1E0 /* shopping_cart_loaded.png in Resources */,
@@ -1570,7 +1576,7 @@
 				CODE_SIGN_ENTITLEMENTS = VisitMi/VisitMi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R72HY6CC7P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1596,7 +1602,7 @@
 				CODE_SIGN_ENTITLEMENTS = VisitMi/VisitMi.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = R72HY6CC7P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

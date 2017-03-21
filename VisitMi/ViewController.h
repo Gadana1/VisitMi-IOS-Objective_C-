@@ -13,7 +13,7 @@
 #import "LocationTableViewCell.h"
 #import "HotelObject.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,dbConnDelegate>
+@interface ViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,dbConnDelegate,imageDelegate>
 
 @property (strong, nonatomic)AppDelegate *appDelegate;
 

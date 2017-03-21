@@ -13,6 +13,7 @@
 @end
 
 @implementation TicketsViewController
+UIActivityIndicatorView *loading ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +25,12 @@
     self.proceedBT.layer.shadowOpacity = .5;
     self.proceedBT.layer.shadowRadius = 3.f;
 
+    loading = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loading startAnimating];
+    
+    loading.center = self.ticketsTableView.center;
+    [self.ticketsTableView setBackgroundView:loading];
+    
     self.ticketsTableView.delegate = self;
     self.ticketsTableView.dataSource = self;
     self.ticketsTableView.estimatedRowHeight = 90.f;
@@ -66,7 +73,8 @@
     dispatch_async(dispatch_get_main_queue(), ^(void){
       
         [self.ticketsTableView reloadData];
-      
+        [loading stopAnimating];
+
     });
 }
 

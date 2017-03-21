@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "CountryCell.h"
 
-@interface SettingsDetailsController : UIViewController <UITextFieldDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,dbConnDelegate>
+@interface SettingsDetailsController : UIViewController <UITextFieldDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDelegate,UITableViewDataSource,dbConnDelegate, imageDelegate>
 
 
 @property (assign, nonatomic) BOOL isUserSettings;

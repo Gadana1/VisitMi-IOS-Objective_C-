@@ -50,24 +50,26 @@ UIActivityIndicatorView *loading;
 
 -(void)countriesDownloaded
 {
+    
+    int i=0;
+    for(PlaceObject *PO in _app.countries)
+    {
+        
+        //Download Country Flag
+        NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",_app.serverAddress,PO.country_Code];
+        
+        PO.delegate = self;
+        [PO downloadImages:urlStr :0 :PO.country_Code :i];
+        
+        i++;
+       
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
-                    
-                       for(PlaceObject *PO in _app.countries)
-                       {
-                           
-                           //Download Country Flag
-                           NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",_app.serverAddress,PO.country_Code];
-                           
-                           PO.delegate = self;
-                           [PO downloadImages:urlStr :0 :PO.country_Code :_app.countries.count-1];
-                           
-                           //Check internet Connection
-                           [self checkConnection];
-                           
-                       }
-                       
-
+                
+                       //check connection
+                       [self checkConnection];
                    });
 }
 -(void)checkConnection
@@ -176,17 +178,16 @@ UIActivityIndicatorView *loading;
 -(void)imagesDownloaded:(NSData *)imageDATA :(NSInteger)index
 {
     _app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-
+    
+    if(index < [_app.countries  count])
+    {
+        ((PlaceObject *)[_app.countries objectAtIndex:index]).img = imageDATA;
+        
+    }
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
-                       if(index < [_app.countries  count])
-                       {
-                           PlaceObject *PO = (PlaceObject *)[_app.countries objectAtIndex:index];
-                           PO.img = imageDATA;
-                           
-                           [_countryTableView reloadData];
+                       [_countryTableView reloadData];
 
-                       }
                    });
     
     
@@ -209,11 +210,7 @@ UIActivityIndicatorView *loading;
     
     app.userCountry = country;
 
-    
-    //Move to Welcome page
-    welcome.countryText = app.userCountry[@"CountryName"];
-    [self.navigationController showViewController:welcome sender:nil];
-    
+   
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     
     dispatch_async(queue, ^(void){
@@ -230,8 +227,7 @@ UIActivityIndicatorView *loading;
         if (![fileManager fileExistsAtPath:fileDir isDirectory:&isDirectory] || !isDirectory)
         {
             NSError *error = nil;
-            NSDictionary *attr = [NSDictionary dictionaryWithObject:NSFileProtectionComplete
-                                                             forKey:NSFileProtectionKey];
+            NSDictionary *attr = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
             //create file directory if not already created
             [fileManager createDirectoryAtPath:fileDir
                    withIntermediateDirectories:YES
@@ -251,6 +247,11 @@ UIActivityIndicatorView *loading;
     
     [self.loading setHidden:YES];
     [self.loading stopAnimating];
+    
+    
+    //Move to Welcome page
+    welcome.countryText = app.userCountry[@"CountryName"];
+    [self.navigationController showViewController:welcome sender:nil];
     
 
 }

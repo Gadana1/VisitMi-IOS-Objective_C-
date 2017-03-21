@@ -131,11 +131,10 @@
 
 -(void)downloadImages:(NSString *)imgURL :(int)imgNum :(NSString *)name :(NSInteger)imgIndex
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *imageName = [[NSString alloc]initWithFormat:@"%@%d.png",name,imgNum];
+    NSString *imageName = [[NSString alloc]initWithFormat:@"%lu%d",name.hash,imgNum];
     
     NSString *imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Images"];
     
@@ -144,7 +143,6 @@
     //check if image directory has been created
     if (![fileManager fileExistsAtPath:imgageDir isDirectory:&isDirectory] || !isDirectory)
     {
-    
         NSError *error = nil;
         NSDictionary *attr = [NSDictionary dictionaryWithObject:NSFileProtectionComplete
                                                          forKey:NSFileProtectionKey];
@@ -155,106 +153,97 @@
         if (error)
             NSLog(@"Error creating directory path: %@", [error localizedDescription]);
     }
-    
+
     NSString *imagePath = [imgageDir stringByAppendingPathComponent:imageName];
         
     //check is image already downloaded to phone
-    if (![fileManager fileExistsAtPath:imagePath])
+    if ([fileManager fileExistsAtPath:imagePath])
     {
-        //controles the downloading of images to enhace program fluency
+        NSData *imgData = [NSData dataWithContentsOfFile:imagePath];
         
-        if([CheckInternet isInternetConnectionAvailable:NULL])
-        {
-            //1
+        if (self.delegate) {
+            
+            [self.delegate imagesDownloaded:imgData :imgIndex];
+        }
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
+        dispatch_async(queue, ^(void){
+            
+            
             NSURL *url = [NSURL URLWithString:imgURL];
             
+            NSData *data = [NSData dataWithContentsOfURL:url];
             
-            // 2
+            if (imgData.hash == data.hash) {
+                
+                NSLog(@"image has not changed");
+            }
+            else
+            {
+                NSLog(@"image has changed");
+                
+                if (self.delegate) {
+                    
+                    [self.delegate imagesDownloaded:data :imgIndex];
+                }
+                
+                [data writeToFile:imagePath atomically:YES];
+                
+            }
+            
+            
+        });
+        
+        
+    }
+
+    else
+    {
+        if([CheckInternet isInternetConnectionAvailable:NULL])
+        {
+            NSURL *url = [NSURL URLWithString:imgURL];
+            
             self.downloadPhotoTask = [[NSURLSession sharedSession]
                                       dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                           
-                                          if (data != NULL) {
+                                          if (data) {
                                               
                                               self.img = data;
                                               
-                                              
                                               if (self.delegate)
                                               {
-                                                  
                                                   [self.delegate imagesDownloaded:self.img :imgIndex];
-                                                  
                                               }
-                                              
                                               if (imgNum == 0) {
                                                   
                                                   dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
                                                    
                                                    dispatch_async(queue, ^(void){
                                                    
-                                                   [self.img writeToFile:imagePath atomically:YES];
+                                                       [self.img writeToFile:imagePath atomically:YES];
                                                    
                                                    });
-                                                  
-
                                               }
-                                              
-                                              
                                           }
                                           else
                                           {
                                               NSLog(@"image Data is NULL");
                                               
                                           }
-                                          
-                                          
                                       }];
             
-            // 4
             [self.downloadPhotoTask resume];
             
-            //Add current session sessions array
-            [appDelegate.sessions addObject:self.downloadPhotoTask];
-            
         }
-        
-        
-        
-        
         
     }
     
-    else
-    {
-        NSData *imgData = [NSData dataWithContentsOfFile:imagePath];
-        
-        if (imgData != NULL) {
-            
-            self.img = imgData;
-
-            if (self.delegate) {
-                
-                [self.delegate imagesDownloaded:self.img :imgIndex];
-                
-            }
-            
-            
-        }
-        else
-        {
-            if (self.delegate)
-            {
-                
-                [self.delegate imagesDownloaded:self.img :imgIndex];
-                
-            }
-            
-        }
-        
-    }
     
     
     
 }
+
 
 -(void)deleteImages:(int)imgNum :(NSString *)name
 {

@@ -17,6 +17,7 @@
 CGFloat tableViewContentHieight;
 CGSize scrollContentSize;
 NSInteger selectedTab;
+UIActivityIndicatorView *loading ;
 
 #pragma mark View Lifecycle
 
@@ -41,6 +42,18 @@ NSInteger selectedTab;
     
     [self.bookButton setHidden:YES];
     [self.bookButton setEnabled:NO];
+
+    
+    loading = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loading startAnimating];
+    [loading setHidesWhenStopped:YES];
+    [self.view setUserInteractionEnabled:FALSE];
+    
+    loading.frame = self.view.frame;
+    [loading setBackgroundColor:[UIColor whiteColor]];
+    loading.center = self.view.center;
+    [self.view addSubview:loading];
+    
 
     //Select default tab
     selectedTab = 0;
@@ -239,6 +252,12 @@ NSInteger selectedTab;
         
         [self.infoView.tableView reloadData];
         
+        
+        [loading stopAnimating];
+        [loading removeFromSuperview];
+        
+        [self.view setUserInteractionEnabled:YES];
+        
     });
    
     int countUrl = 0;
@@ -250,7 +269,6 @@ NSInteger selectedTab;
 
     }
     
-
 }
 
 - (void)locationAction:(id)sender

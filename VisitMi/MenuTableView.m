@@ -54,6 +54,9 @@ AppDelegate *app;
 {
     [super viewDidAppear:YES];
     
+    
+    [self checkLogInStatus];
+
     //Set Color to identify  default selected cell
     for (UIView *view in [[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedRow inSection:selectedSection]] contentView] subviews])
     {
@@ -65,7 +68,8 @@ AppDelegate *app;
         
     }
     
-    
+
+  
     
 }
 
@@ -210,17 +214,11 @@ AppDelegate *app;
 {
     [super viewWillAppear:YES];
     
-    dispatch_async(dispatch_get_main_queue(), ^(void)
-                   {
-                       [self checkLogInStatus];
-                       [self.navigationController setNavigationBarHidden:YES];
-                       self.tableView.contentOffset = CGPointMake(0, 0);
-
-                   });
+    [self.navigationController setNavigationBarHidden:YES];
+    self.tableView.contentOffset = CGPointMake(0, 0);
     
-
-    
-    
+  
+   
 }
 
 - (void)didReceiveMemoryWarning {

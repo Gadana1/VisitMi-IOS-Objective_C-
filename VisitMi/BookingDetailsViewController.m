@@ -16,6 +16,7 @@
 
 BOOL getDirectionsActivatad;
 BOOL bookTaxiActivatd;
+UIActivityIndicatorView *loading ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +45,15 @@ BOOL bookTaxiActivatd;
     [self.cancelBT.layer setCornerRadius:5];
     
     
+    loading = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loading startAnimating];
+    [loading setHidesWhenStopped:YES];
+
+    loading.frame = self.view.frame;
+    [loading setBackgroundColor:[UIColor whiteColor]];
+    loading.center = self.view.center;
+    [self.view addSubview:loading];
+
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapReceived:)];
     [tapGestureRecognizer setDelegate:self];
     [self.passView addGestureRecognizer:tapGestureRecognizer];
@@ -98,7 +108,7 @@ BOOL bookTaxiActivatd;
                        self.currencyCodeLB.text = self.BO.currencyCode;
                        self.priceLB.text = [NSString stringWithFormat:@"%.2f",self.BO.price];
                        
-                       
+                       [loading stopAnimating];
                    });
     
     
