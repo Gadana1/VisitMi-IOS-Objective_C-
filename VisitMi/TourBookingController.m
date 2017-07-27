@@ -140,8 +140,10 @@ double doneBtOrign,doneBtHeight;
         if (self.tourBookingDelegate) {
             
             [self.tourBookingDelegate completeBooking:placeObj];
+            
         }
-
+        
+        [self.view setUserInteractionEnabled:YES];
     }
     else
     {
@@ -169,6 +171,7 @@ double doneBtOrign,doneBtHeight;
                                      [_loading setHidden:YES];
                                      
                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                     [self.view setUserInteractionEnabled:YES];
                                      
                                  }];
             

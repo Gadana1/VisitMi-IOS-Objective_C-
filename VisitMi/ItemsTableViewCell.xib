@@ -18,10 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <activityIndicatorView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="igp-oJ-SLu">
+                    <activityIndicatorView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="igp-oJ-SLu">
                         <rect key="frame" x="177" y="90" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <color key="color" red="0.83573843804615389" green="0.35095986804256235" blue="0.16864620231885361" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </activityIndicatorView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-Nn-hGw">
                         <rect key="frame" x="8" y="8" width="359" height="198"/>

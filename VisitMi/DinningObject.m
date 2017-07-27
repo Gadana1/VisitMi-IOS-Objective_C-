@@ -124,7 +124,8 @@ int count;
     DO.icon_url = nearByData[@"icon"];
     DO.place_id = nearByData[@"place_id"];
     DO.address = nearByData[@"vicinity"];
-
+    DO.api_Type = @"G";
+    
     if([nearByData valueForKey:@"geometry"])
     {
         geometry = [nearByData valueForKey:@"geometry"];
@@ -138,7 +139,7 @@ int count;
     if([nearByData valueForKey:@"opening_hours"])
     {
         opening_hours = [nearByData valueForKey:@"opening_hours"];
-        DO.open_now = opening_hours[@"open_now"];
+        DO.open_now = (BOOL)opening_hours[@"open_now"];
 
     }
     
@@ -369,6 +370,7 @@ int count;
     DO.icon_url = nearByData[@"icon"];
     DO.place_id = nearByData[@"id"];
     DO.delegate = self.delegate;
+    DO.api_Type = @"FS";
     
     if([nearByData valueForKey:@"contact"])
     {
@@ -640,7 +642,8 @@ int count;
     DO.canonicalURL = nearByData[@"url"];
     DO.Dine_type = nearByData[@"cuisines"];
     DO.delegate = self.delegate;
- 
+    DO.api_Type = @"Z";
+    
     if([nearByData valueForKey:@"location"])
     {
         location = [nearByData valueForKey:@"location"];
@@ -681,7 +684,7 @@ int count;
         DO.place_distance = [NSString stringWithFormat:@"%.2f km",DO.distance/1000];
     }
 
-    DO.provider_icon = [UIImage imageNamed:@"zomato.png"];
+    DO.provider_icon = [UIImage imageNamed:@"Zomato.png"];
 
     if (self.delegate)
     {

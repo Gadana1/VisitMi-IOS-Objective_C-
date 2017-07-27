@@ -394,7 +394,7 @@ idleAtCameraPosition:(GMSCameraPosition *)position {
         
         for (count = 0; count<self.markers.count; count++) {
             
-            NSString *countMarkers =[[NSString alloc]initWithFormat:@"%lu",count ];
+            NSString *countMarkers =[[NSString alloc]initWithFormat:@"%lu",(unsigned long)count ];
             
             markers= [self.markers valueForKey:countMarkers];
             
@@ -481,7 +481,7 @@ idleAtCameraPosition:(GMSCameraPosition *)position {
     
     NSNumber *latitudeNum;
     NSNumber *longitudeNum;
-    NSString *countMarkers =[[NSString alloc]initWithFormat:@"%lu",self.markers.count];
+    NSString *countMarkers =[[NSString alloc]initWithFormat:@"%lu",(unsigned long)self.markers.count];
 
     _details = [[NSMutableDictionary alloc]init];
     
@@ -498,7 +498,7 @@ idleAtCameraPosition:(GMSCameraPosition *)position {
                                                @"Type":annotationType,
                                                @"Latitude":latitudeNum,
                                                @"Longitude":longitudeNum,
-                                               @"Index":[NSString stringWithFormat:@"%lu",[_hotelItems indexOfObject:_hotelItems.lastObject]],
+                                               @"Index":[NSString stringWithFormat:@"%lu",(unsigned long)[_hotelItems indexOfObject:_hotelItems.lastObject]],
 
                                                                    }];
         
@@ -527,7 +527,7 @@ idleAtCameraPosition:(GMSCameraPosition *)position {
                                                @"Type":annotationType,
                                                @"Latitude":latitudeNum,
                                                @"Longitude":longitudeNum,
-                                               @"Index":[NSString stringWithFormat:@"%lu",[_pointsItems indexOfObject:_pointsItems.lastObject]],
+                                               @"Index":[NSString stringWithFormat:@"%lu",(unsigned long)[_pointsItems indexOfObject:_pointsItems.lastObject]],
 
                                                }];
         

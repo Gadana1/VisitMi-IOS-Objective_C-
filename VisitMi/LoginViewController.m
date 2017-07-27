@@ -43,6 +43,7 @@
     [self.continueBT.layer setCornerRadius:15.0f];
     [self.continueBT.layer setMasksToBounds:YES];
     
+    self.loadingOverlay.center = self.view.center;
     
     //SetUpOverlayView
     //UIViewController *overlayViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"overlay"];

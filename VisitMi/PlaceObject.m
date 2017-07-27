@@ -131,12 +131,14 @@
 
 -(void)downloadImages:(NSString *)imgURL :(int)imgNum :(NSString *)name :(NSInteger)imgIndex
 {
+    
+    NSURL *url = [NSURL URLWithString:imgURL];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *imageName = [[NSString alloc]initWithFormat:@"%lu%d",name.hash,imgNum];
+    NSString *imageName = [[NSString alloc]initWithFormat:@"%lu%d",(unsigned long)name.hash,imgNum];
     
-    NSString *imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Images"];
+    NSString *imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Images"];
     
     BOOL isDirectory;
     
@@ -155,7 +157,8 @@
     }
 
     NSString *imagePath = [imgageDir stringByAppendingPathComponent:imageName];
-        
+    
+
     //check is image already downloaded to phone
     if ([fileManager fileExistsAtPath:imagePath])
     {
@@ -166,32 +169,42 @@
             [self.delegate imagesDownloaded:imgData :imgIndex];
         }
         
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
         
         dispatch_async(queue, ^(void){
             
-            
-            NSURL *url = [NSURL URLWithString:imgURL];
-            
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            
-            if (imgData.hash == data.hash) {
-                
-                NSLog(@"image has not changed");
-            }
-            else
-            {
-                NSLog(@"image has changed");
-                
-                if (self.delegate) {
-                    
-                    [self.delegate imagesDownloaded:data :imgIndex];
-                }
-                
-                [data writeToFile:imagePath atomically:YES];
-                
-            }
-            
+
+            self.downloadPhotoTask = [[NSURLSession sharedSession]
+                                      dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                          
+                                          if (data) {
+                                              
+                                              if (imgData.hash == data.hash) {
+                                                  
+                                                  NSLog(@"image has not changed");
+                                              }
+                                              else
+                                              {
+                                                  NSLog(@"image has changed");
+                                                  
+                                                  if (self.delegate) {
+                                                      
+                                                      [self.delegate imagesDownloaded:data :imgIndex];
+                                                  }
+                                                  
+                                                  [data writeToFile:imagePath atomically:YES];
+                                                  
+                                              }
+                                          }
+                                          else
+                                          {
+                                              NSLog(@"image Data is NULL");
+                                              
+                                          }
+                                      }];
+
+    
             
         });
         
@@ -202,38 +215,40 @@
     {
         if([CheckInternet isInternetConnectionAvailable:NULL])
         {
-            NSURL *url = [NSURL URLWithString:imgURL];
+
             
-            self.downloadPhotoTask = [[NSURLSession sharedSession]
-                                      dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                          
-                                          if (data) {
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+            
+            dispatch_async(queue, ^(void){
+                
+                
+                self.downloadPhotoTask = [[NSURLSession sharedSession]
+                                          dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               
-                                              self.img = data;
-                                              
-                                              if (self.delegate)
-                                              {
-                                                  [self.delegate imagesDownloaded:self.img :imgIndex];
-                                              }
-                                              if (imgNum == 0) {
+                                              if (data) {
                                                   
-                                                  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-                                                   
-                                                   dispatch_async(queue, ^(void){
-                                                   
-                                                       [self.img writeToFile:imagePath atomically:YES];
-                                                   
-                                                   });
+                                                  self.img = data;
+                                                  
+                                                  if (self.delegate)
+                                                  {
+                                                      [self.delegate imagesDownloaded:self.img :imgIndex];
+                                                  }
+                                                  if (imgNum == 0) {
+                                                      
+                                                      [self.img writeToFile:imagePath atomically:YES];
+
+                                                  }
                                               }
-                                          }
-                                          else
-                                          {
-                                              NSLog(@"image Data is NULL");
-                                              
-                                          }
-                                      }];
-            
-            [self.downloadPhotoTask resume];
+                                              else
+                                              {
+                                                  NSLog(@"image Data is NULL");
+                                                  
+                                              }
+                                          }];
+                
+                [self.downloadPhotoTask resume];
+            });
+        
             
         }
         
@@ -252,7 +267,7 @@
     
     NSString *imageName = [[NSString alloc]initWithFormat:@"%@%d.png",name,imgNum];
     
-    NSString *imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Images"];
+    NSString *imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Images"];
    
     NSString *imagePath = [imgageDir stringByAppendingPathComponent:imageName];
     

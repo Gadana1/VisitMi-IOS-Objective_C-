@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *statusView;
 @property (weak, nonatomic) IBOutlet UIView *activeItemsView;
 @property (weak, nonatomic) IBOutlet UIView *priceView;
+@property (weak, nonatomic) IBOutlet UILabel *paymentLB;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBT;
 @property (weak, nonatomic) IBOutlet UIButton *infoBT;
 

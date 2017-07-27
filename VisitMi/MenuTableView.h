@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "LoginViewController.h"
-#import "SettingsTableViewController.h"
-#import "BookingTableViewController.h"
 #import "BookmarkTableViewController.h"
 #import "SWRevealViewController.h"
 

@@ -66,19 +66,33 @@ NSString *administrativeArea;
     self.theFavorites = [[NSMutableArray alloc]init];
     NSArray *tempFav = [NSArray arrayWithContentsOfFile:_destinationPath];
     
-    for (NSDictionary *fav in tempFav) {
+    if (tempFav.count > 0) {
         
-        if ([fav[@"CountryCode"] isEqualToString:_appDelegate.userCountry[@"CountryCode"]]) {
+        for (NSDictionary *fav in tempFav) {
             
-            [self.theFavorites addObject:fav];
+            if ([fav[@"CountryCode"] isEqualToString:_appDelegate.userCountry[@"CountryCode"]]) {
+                
+                [self.theFavorites addObject:fav];
+                
+            }
             
         }
         
+        [self.tableView setBackgroundView:NULL];
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    }
+    else
+    {
+        self.backgroundView.center = self.view.center;
+        [self.tableView setBackgroundView:self.backgroundView];
+        self.navigationItem.rightBarButtonItem = nil;
+
     }
     
     //Get Image folder path
     _fileManager = [NSFileManager defaultManager];
-    _imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Images"];
+    _imgageDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Images"];
     
     BOOL isDirectory;
     
@@ -114,7 +128,6 @@ NSString *administrativeArea;
     
     self.refreshControl =refreshControl;
     
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 }
 
@@ -167,18 +180,30 @@ NSString *administrativeArea;
     
     self.theFavorites = [[NSMutableArray alloc]init];
     NSArray *tempFav = [NSArray arrayWithContentsOfFile:_destinationPath];
-    
-    for (NSDictionary *fav in tempFav) {
+    if (tempFav.count > 0) {
         
-        if ([fav[@"CountryCode"] isEqualToString:_appDelegate.userCountry[@"CountryCode"]]) {
-                        
-            [self.theFavorites addObject:fav];
+        for (NSDictionary *fav in tempFav) {
+            
+            if ([fav[@"CountryCode"] isEqualToString:_appDelegate.userCountry[@"CountryCode"]]) {
+                
+                [self.theFavorites addObject:fav];
+                
+            }
             
         }
         
+        [self.tableView setBackgroundView:NULL];
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    }
+    else
+    {
+        self.backgroundView.center = self.view.center;
+        [self.tableView setBackgroundView:self.backgroundView];
+        self.navigationItem.rightBarButtonItem = nil;
+
     }
     
- 
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 
@@ -229,7 +254,7 @@ NSString *administrativeArea;
     
     NSDictionary *favItem = (NSDictionary *)[self.theFavorites objectAtIndex:indexPath.row];
     
-    NSString *imageName = [[NSString alloc]initWithFormat:@"%lu%d",((NSString *)favItem[@"Name"]).hash,[favItem[@"ImgNO"] intValue]];
+    NSString *imageName = [[NSString alloc]initWithFormat:@"%lu%d",(unsigned long)((NSString *)favItem[@"Name"]).hash,[favItem[@"ImgNO"] intValue]];
     NSLog(@"%@",imageName);
     _imagePath = [_imgageDir stringByAppendingPathComponent:imageName];
     

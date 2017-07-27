@@ -62,7 +62,6 @@
     }
     else if (indexPath.row == 2)
     {
-        NSLog(@"Tour info cell %lu selected", indexPath.row);
 
         details.item1Lb = @"Terms And Conditions";
         if ([self.terms isEqualToString:@""] || self.terms == NULL) {

@@ -48,7 +48,6 @@
 		D517F1281C5FD9A90000502E /* HotelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D517F1261C5FD9A90000502E /* HotelTableViewCell.xib */; };
 		D52537191E1A9D4E00658CF3 /* DBConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = D52537181E1A9D4E00658CF3 /* DBConnect.m */; };
 		D52537281E1D22DB00658CF3 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52537271E1D22DB00658CF3 /* WelcomeViewController.m */; };
-		D52562701E81AB3500500C12 /* Expedia_TripAdvisor.png in Resources */ = {isa = PBXBuildFile; fileRef = D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */; };
 		D52E76A41E6D329E00B68FE7 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = D52E76A31E6D329E00B68FE7 /* filter.png */; };
 		D53875171E1ED74000A8FC52 /* airport.png in Resources */ = {isa = PBXBuildFile; fileRef = D53875161E1ED74000A8FC52 /* airport.png */; };
 		D538751C1E1F58B000A8FC52 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D538751B1E1F58B000A8FC52 /* SettingsTableViewController.m */; };
@@ -95,6 +94,7 @@
 		D544FF6F1D7B1B5B00CCA6C0 /* point_of_interest.png in Resources */ = {isa = PBXBuildFile; fileRef = D544FF6E1D7B1B5A00CCA6C0 /* point_of_interest.png */; };
 		D544FF711D7B1B8D00CCA6C0 /* marker_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D544FF701D7B1B8D00CCA6C0 /* marker_big.png */; };
 		D544FF731D7B1C1B00CCA6C0 /* hotel-64.png in Resources */ = {isa = PBXBuildFile; fileRef = D544FF721D7B1C1B00CCA6C0 /* hotel-64.png */; };
+		D54ED7F41E82EBB200566DD4 /* Expedia_TripAdvisor.png in Resources */ = {isa = PBXBuildFile; fileRef = D54ED7F31E82EBB200566DD4 /* Expedia_TripAdvisor.png */; };
 		D55250931D73533700AD4233 /* infowindow_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D55250921D73533700AD4233 /* infowindow_background.png */; };
 		D55250951D73566100AD4233 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D55250941D73566100AD4233 /* refresh.png */; };
 		D552509B1D73705E00AD4233 /* circled_left.png in Resources */ = {isa = PBXBuildFile; fileRef = D552509A1D73705E00AD4233 /* circled_left.png */; };
@@ -213,7 +213,6 @@
 		D5D551A41BD3C13B0046C240 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D551A21BD3C13B0046C240 /* LaunchScreen.storyboard */; };
 		D5D551AF1BD3C13B0046C240 /* VisitMiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D551AE1BD3C13B0046C240 /* VisitMiTests.m */; };
 		D5D551BA1BD3C13B0046C240 /* VisitMiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D551B91BD3C13B0046C240 /* VisitMiUITests.m */; };
-		D5D711221BE4395200185844 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D711211BE4395200185844 /* ExternalAccessory.framework */; };
 		D5D711241BE4398B00185844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D711231BE4398B00185844 /* CoreLocation.framework */; };
 		D5D711261BE4415E00185844 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D711251BE4415E00185844 /* UIKit.framework */; };
 		D5D711281BE4416C00185844 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D711271BE4416C00185844 /* Foundation.framework */; };
@@ -300,7 +299,6 @@
 		D51172891BDAD282006DA4E7 /* OverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewViewController.m; sourceTree = "<group>"; };
 		D51172911BDAE7E5006DA4E7 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		D51172921BDAE7E5006DA4E7 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		D51172961BDAFB0B006DA4E7 /* VisitMi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VisitMi.entitlements; sourceTree = "<group>"; };
 		D517F1171C5F71380000502E /* HotelsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelsTableViewController.h; sourceTree = "<group>"; };
 		D517F1181C5F71380000502E /* HotelsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelsTableViewController.m; sourceTree = "<group>"; };
 		D517F11A1C5F903D0000502E /* HotelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelObject.h; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 		D52537181E1A9D4E00658CF3 /* DBConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBConnect.m; sourceTree = "<group>"; };
 		D52537261E1D22DB00658CF3 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		D52537271E1D22DB00658CF3 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Expedia_TripAdvisor.png; path = ../../Downloads/Expedia_TripAdvisor.png; sourceTree = "<group>"; };
 		D52E76A31E6D329E00B68FE7 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
 		D5386F7C1E32AFB900AF2B6E /* DataDynamicTableTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataDynamicTableTableViewController.h; sourceTree = SOURCE_ROOT; };
 		D5386F7D1E32AFB900AF2B6E /* DataDynamicTableTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataDynamicTableTableViewController.m; sourceTree = SOURCE_ROOT; };
@@ -369,6 +366,7 @@
 		D544FF6E1D7B1B5A00CCA6C0 /* point_of_interest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_of_interest.png; sourceTree = "<group>"; };
 		D544FF701D7B1B8D00CCA6C0 /* marker_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker_big.png; sourceTree = "<group>"; };
 		D544FF721D7B1C1B00CCA6C0 /* hotel-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotel-64.png"; sourceTree = "<group>"; };
+		D54ED7F31E82EBB200566DD4 /* Expedia_TripAdvisor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expedia_TripAdvisor.png; sourceTree = "<group>"; };
 		D55250921D73533700AD4233 /* infowindow_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infowindow_background.png; sourceTree = "<group>"; };
 		D55250941D73566100AD4233 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		D552509A1D73705E00AD4233 /* circled_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circled_left.png; sourceTree = "<group>"; };
@@ -389,6 +387,7 @@
 		D55660821C58A80600A42466 /* CheckInternet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInternet.m; sourceTree = "<group>"; };
 		D55660841C58AA2200A42466 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D55660851C58AA2200A42466 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D55F22F71E83617700389015 /* VisitMi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VisitMi.entitlements; sourceTree = "<group>"; };
 		D56684A91E1D651600A8D9B8 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon@2x.png"; sourceTree = "<group>"; };
 		D56684B51E1D8CD000A8D9B8 /* malaysia-hotels.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "malaysia-hotels.jpg"; sourceTree = "<group>"; };
 		D56684B71E1E48A300A8D9B8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -525,7 +524,6 @@
 		D5D551B51BD3C13B0046C240 /* VisitMiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VisitMiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D551B91BD3C13B0046C240 /* VisitMiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitMiUITests.m; sourceTree = "<group>"; };
 		D5D551BB1BD3C13B0046C240 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5D711211BE4395200185844 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		D5D711231BE4398B00185844 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D5D711251BE4415E00185844 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D5D711271BE4416C00185844 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -550,7 +548,6 @@
 				D5D711261BE4415E00185844 /* UIKit.framework in Frameworks */,
 				D5D711241BE4398B00185844 /* CoreLocation.framework in Frameworks */,
 				D503E8091BE2F24100C1AC0B /* CoreGraphics.framework in Frameworks */,
-				D5D711221BE4395200185844 /* ExternalAccessory.framework in Frameworks */,
 				D50F72FE1BD89AE900C18E89 /* libsqlite3.tbd in Frameworks */,
 				D503E8071BE2F22700C1AC0B /* MapKit.framework in Frameworks */,
 				D50F72FD1BD88D5000C18E89 /* libsqlite3.0.tbd in Frameworks */,
@@ -592,7 +589,6 @@
 				D5D711271BE4416C00185844 /* Foundation.framework */,
 				D5D711251BE4415E00185844 /* UIKit.framework */,
 				D5D711231BE4398B00185844 /* CoreLocation.framework */,
-				D5D711211BE4395200185844 /* ExternalAccessory.framework */,
 				D503E8081BE2F24100C1AC0B /* CoreGraphics.framework */,
 				D503E8061BE2F22700C1AC0B /* MapKit.framework */,
 				D50F72FC1BD88D5000C18E89 /* libsqlite3.0.tbd */,
@@ -605,10 +601,6 @@
 		D509E8451BD4BFE000C94853 /* HomePics */ = {
 			isa = PBXGroup;
 			children = (
-				D5C1202A1E77ED02000FD07A /* PoweredbySkyscanner_Inline_Gray.png */,
-				D525626F1E81AB3500500C12 /* Expedia_TripAdvisor.png */,
-				D5C120251E769734000FD07A /* airplane_take_off.png */,
-				D5C120231E76972D000FD07A /* airplane_landing.png */,
 				D5536F971D81EEE800477369 /* 1.5star.png */,
 				D5536F981D81EEE800477369 /* 1star.png */,
 				D5536F991D81EEE800477369 /* 2.5star.png */,
@@ -622,7 +614,9 @@
 				D5536F9E1D81EEE800477369 /* 4star.png */,
 				D5536F9C1D81EEE800477369 /* 5star.png */,
 				D58267921E282E5A0017CAE5 /* address_book.png */,
+				D5C120231E76972D000FD07A /* airplane_landing.png */,
 				D59976441C7C3C3700896847 /* airplane_mode_on.png */,
+				D5C120251E769734000FD07A /* airplane_take_off.png */,
 				D53875161E1ED74000A8FC52 /* airport.png */,
 				D53875431E225A1600A8FC52 /* Arrow label.png */,
 				D552509C1D7370E300AD4233 /* back_button.png */,
@@ -647,6 +641,7 @@
 				D5438A651E1EBCC500B106BB /* email.png */,
 				D538755B1E23E3FA00A8FC52 /* enter.png */,
 				D538755D1E23E46700A8FC52 /* exit.png */,
+				D54ED7F31E82EBB200566DD4 /* Expedia_TripAdvisor.png */,
 				D5B3C3B81D76647200775B63 /* filled_like.png */,
 				D52E76A31E6D329E00B68FE7 /* filter.png */,
 				D58D9DB71D34A777001506FA /* Foursquare.png */,
@@ -700,6 +695,7 @@
 				D57529681D07774E00B1EB6F /* point.png */,
 				D5B18BD31D2BF26F00A7D5F8 /* powered_by_expedia.png */,
 				D5B18BCF1D2BF0D400A7D5F8 /* poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png */,
+				D5C1202A1E77ED02000FD07A /* PoweredbySkyscanner_Inline_Gray.png */,
 				D58FE58A1E5EE0C000702A62 /* QR_code_filled.png */,
 				D58267941E2834FC0017CAE5 /* refresh_filled.png */,
 				D55250941D73566100AD4233 /* refresh.png */,
@@ -777,67 +773,482 @@
 			path = Safari;
 			sourceTree = "<group>";
 		};
-		D533C79B1E3AE9540081A513 /* ViewControllers */ = {
+		D5212EA31F15EA2300E5E145 /* StartUp */ = {
 			isa = PBXGroup;
 			children = (
 				D56684E21E1E74D700A8D9B8 /* StartUpViewController.h */,
 				D56684E31E1E74D700A8D9B8 /* StartUpViewController.m */,
+			);
+			name = StartUp;
+			sourceTree = "<group>";
+		};
+		D5212EA41F15EA4600E5E145 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
 				D52537261E1D22DB00658CF3 /* WelcomeViewController.h */,
 				D52537271E1D22DB00658CF3 /* WelcomeViewController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		D5212EA51F15EA5F00E5E145 /* Login */ = {
+			isa = PBXGroup;
+			children = (
 				D56684B71E1E48A300A8D9B8 /* LoginViewController.h */,
 				D56684B81E1E48A300A8D9B8 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D5212EA61F15EA7300E5E145 /* Register */ = {
+			isa = PBXGroup;
+			children = (
 				D56684C31E1E4AED00A8D9B8 /* RegisterViewController.h */,
 				D56684C41E1E4AED00A8D9B8 /* RegisterViewController.m */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		D5212EA71F15EA8400E5E145 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				D53875391E218A1500A8FC52 /* MenuTableView.h */,
 				D538753A1E218A1500A8FC52 /* MenuTableView.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		D5212EA81F15EA9000E5E145 /* Home */ = {
+			isa = PBXGroup;
+			children = (
 				D578BA8D1D2C8B3800746CFD /* HomeViewController.h */,
 				D578BA8E1D2C8B3800746CFD /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		D5212EA91F15EA9D00E5E145 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
 				D57DB5E21E329FE50038D02E /* BookmarkTableViewController.h */,
 				D57DB5E31E329FE50038D02E /* BookmarkTableViewController.m */,
+			);
+			name = Favourite;
+			sourceTree = "<group>";
+		};
+		D5212EAA1F15EAAC00E5E145 /* Bookings */ = {
+			isa = PBXGroup;
+			children = (
 				D56684C01E1E4A6400A8D9B8 /* BookingTableViewController.h */,
 				D56684C11E1E4A6400A8D9B8 /* BookingTableViewController.m */,
 				D567E2121E66770500D313BE /* BookingDetailsViewController.h */,
 				D567E2131E66770500D313BE /* BookingDetailsViewController.m */,
+			);
+			name = Bookings;
+			sourceTree = "<group>";
+		};
+		D5212EAB1F15EACF00E5E145 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				D538751A1E1F58AF00A8FC52 /* SettingsTableViewController.h */,
 				D538751B1E1F58B000A8FC52 /* SettingsTableViewController.m */,
 				D59481861E6D5EB600AB8F6D /* SettingsDetailsController.h */,
 				D59481871E6D5EB600AB8F6D /* SettingsDetailsController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		D5212EAC1F15EAE400E5E145 /* More */ = {
+			isa = PBXGroup;
+			children = (
 				D59481911E75D75200AB8F6D /* MoreTableViewController.h */,
 				D59481921E75D75200AB8F6D /* MoreTableViewController.m */,
 				D59481941E75D77700AB8F6D /* MoreViewController.h */,
 				D59481951E75D77700AB8F6D /* MoreViewController.m */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		D5212EAD1F15EAF200E5E145 /* Select Location */ = {
+			isa = PBXGroup;
+			children = (
 				D5D5519A1BD3C13B0046C240 /* ViewController.h */,
 				D5D5519B1BD3C13B0046C240 /* ViewController.m */,
+			);
+			name = "Select Location";
+			sourceTree = "<group>";
+		};
+		D5212EAE1F15EB0800E5E145 /* Dynamic List Contents */ = {
+			isa = PBXGroup;
+			children = (
 				D5386F7C1E32AFB900AF2B6E /* DataDynamicTableTableViewController.h */,
 				D5386F7D1E32AFB900AF2B6E /* DataDynamicTableTableViewController.m */,
+			);
+			name = "Dynamic List Contents";
+			sourceTree = "<group>";
+		};
+		D5212EAF1F15EB5100E5E145 /* NearMe */ = {
+			isa = PBXGroup;
+			children = (
 				D57529791D07A6A000B1EB6F /* NearMeViewController.h */,
 				D575297A1D07A6A000B1EB6F /* NearMeViewController.m */,
+			);
+			name = NearMe;
+			sourceTree = "<group>";
+		};
+		D5212EB01F15EB7100E5E145 /* Attraction Tab */ = {
+			isa = PBXGroup;
+			children = (
+				D5212EB41F15EBA000E5E145 /* Overview */,
+				D5212EB31F15EB9800E5E145 /* Map */,
+				D5212EB21F15EB9100E5E145 /* NearBy */,
+				D5212EB11F15EB8800E5E145 /* Hotel */,
 				D51172851BDAC826006DA4E7 /* myTabBarController.h */,
 				D51172861BDAC826006DA4E7 /* myTabBarController.m */,
-				D575298B1D08EFF800B1EB6F /* NearByTableViewController.h */,
-				D575298C1D08EFF800B1EB6F /* NearByTableViewController.m */,
-				D51172881BDAD282006DA4E7 /* OverviewViewController.h */,
-				D51172891BDAD282006DA4E7 /* OverviewViewController.m */,
-				D51172911BDAE7E5006DA4E7 /* MapViewController.h */,
-				D51172921BDAE7E5006DA4E7 /* MapViewController.m */,
+			);
+			name = "Attraction Tab";
+			sourceTree = "<group>";
+		};
+		D5212EB11F15EB8800E5E145 /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
 				D517F1171C5F71380000502E /* HotelsTableViewController.h */,
 				D517F1181C5F71380000502E /* HotelsTableViewController.m */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
+		D5212EB21F15EB9100E5E145 /* NearBy */ = {
+			isa = PBXGroup;
+			children = (
+				D575298B1D08EFF800B1EB6F /* NearByTableViewController.h */,
+				D575298C1D08EFF800B1EB6F /* NearByTableViewController.m */,
+			);
+			name = NearBy;
+			sourceTree = "<group>";
+		};
+		D5212EB31F15EB9800E5E145 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D51172911BDAE7E5006DA4E7 /* MapViewController.h */,
+				D51172921BDAE7E5006DA4E7 /* MapViewController.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		D5212EB41F15EBA000E5E145 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				D51172881BDAD282006DA4E7 /* OverviewViewController.h */,
+				D51172891BDAD282006DA4E7 /* OverviewViewController.m */,
+			);
+			name = Overview;
+			sourceTree = "<group>";
+		};
+		D5212EB51F15EBEC00E5E145 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				D5212EB91F15EC8000E5E145 /* Tour Info */,
+				D5212EB81F15EC6000E5E145 /* Tour Booking */,
+				D5212EB71F15EC4F00E5E145 /* Tour Ticket */,
+				D5212EB61F15EC3800E5E145 /* Tour Image */,
 				D5ED22121E3966C700EDB78E /* TourViewController.h */,
 				D5ED22131E3966C700EDB78E /* TourViewController.m */,
-				D5BC61E51E3F36B600B2FCE6 /* TourInfoView.h */,
-				D5BC61E61E3F36B600B2FCE6 /* TourInfoView.m */,
-				D5BC61E81E42073C00B2FCE6 /* TourInfoDetailsView.h */,
-				D5BC61E91E42073C00B2FCE6 /* TourInfoDetailsView.m */,
-				D59C58111E5B6A000090EC3E /* BookingContainerController.h */,
-				D59C58121E5B6A000090EC3E /* BookingContainerController.m */,
-				D538F5F51E47ABB700AA8F14 /* TicketsViewController.h */,
-				D538F5F61E47ABB700AA8F14 /* TicketsViewController.m */,
-				D59C58141E5B75970090EC3E /* TourBookingController.h */,
-				D59C58151E5B75970090EC3E /* TourBookingController.m */,
+			);
+			name = Tour;
+			sourceTree = "<group>";
+		};
+		D5212EB61F15EC3800E5E145 /* Tour Image */ = {
+			isa = PBXGroup;
+			children = (
 				D5ED221B1E3A03CE00EDB78E /* ImageSiderPageViewController.h */,
 				D5ED221C1E3A03CE00EDB78E /* ImageSiderPageViewController.m */,
 				D5ED22181E397D6800EDB78E /* ImageSliderPageView.h */,
 				D5ED22191E397D6800EDB78E /* ImageSliderPageView.m */,
+			);
+			name = "Tour Image";
+			sourceTree = "<group>";
+		};
+		D5212EB71F15EC4F00E5E145 /* Tour Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				D538F5F51E47ABB700AA8F14 /* TicketsViewController.h */,
+				D538F5F61E47ABB700AA8F14 /* TicketsViewController.m */,
+			);
+			name = "Tour Ticket";
+			sourceTree = "<group>";
+		};
+		D5212EB81F15EC6000E5E145 /* Tour Booking */ = {
+			isa = PBXGroup;
+			children = (
+				D59C58111E5B6A000090EC3E /* BookingContainerController.h */,
+				D59C58121E5B6A000090EC3E /* BookingContainerController.m */,
+				D59C58141E5B75970090EC3E /* TourBookingController.h */,
+				D59C58151E5B75970090EC3E /* TourBookingController.m */,
+			);
+			name = "Tour Booking";
+			sourceTree = "<group>";
+		};
+		D5212EB91F15EC8000E5E145 /* Tour Info */ = {
+			isa = PBXGroup;
+			children = (
+				D5BC61E51E3F36B600B2FCE6 /* TourInfoView.h */,
+				D5BC61E61E3F36B600B2FCE6 /* TourInfoView.m */,
+				D5BC61E81E42073C00B2FCE6 /* TourInfoDetailsView.h */,
+				D5BC61E91E42073C00B2FCE6 /* TourInfoDetailsView.m */,
+			);
+			name = "Tour Info";
+			sourceTree = "<group>";
+		};
+		D5212EBA1F15ECBA00E5E145 /* Country */ = {
+			isa = PBXGroup;
+			children = (
+				D599F4F21E5079450032F548 /* CountryCell.h */,
+				D599F4F31E5079450032F548 /* CountryCell.m */,
+				D599F4F41E5079450032F548 /* CountryCell.xib */,
+			);
+			name = Country;
+			sourceTree = "<group>";
+		};
+		D5212EBB1F15ECC600E5E145 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D58920F61D2C9E9B006CA1E0 /* HomeTableViewCell.h */,
+				D58920F71D2C9E9B006CA1E0 /* HomeTableViewCell.m */,
+				D58920F81D2C9E9B006CA1E0 /* HomeTableViewCell.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		D5212EBC1F15ECD900E5E145 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				D50C747B1D31AE7200A83802 /* PlaceSearchTableViewCell.h */,
+				D50C747C1D31AE7200A83802 /* PlaceSearchTableViewCell.m */,
+				D50C747D1D31AE7200A83802 /* PlaceSearchTableViewCell.xib */,
+			);
+			name = Place;
+			sourceTree = "<group>";
+		};
+		D5212EBD1F15ECEC00E5E145 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				D50C74631D2FD1D700A83802 /* BookmarkTableViewCell.h */,
+				D50C74641D2FD1D700A83802 /* BookmarkTableViewCell.m */,
+				D50C74651D2FD1D700A83802 /* BookmarkTableViewCell.xib */,
+			);
+			name = Favourite;
+			sourceTree = "<group>";
+		};
+		D5212EBE1F15ECF900E5E145 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D538753C1E22068400A8FC52 /* LocationTableViewCell.h */,
+				D538753D1E22068400A8FC52 /* LocationTableViewCell.m */,
+				D538753E1E22068400A8FC52 /* LocationTableViewCell.xib */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		D5212EBF1F15ED0900E5E145 /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				D517F1241C5FD9A90000502E /* HotelTableViewCell.h */,
+				D517F1251C5FD9A90000502E /* HotelTableViewCell.m */,
+				D517F1261C5FD9A90000502E /* HotelTableViewCell.xib */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
+		D5212EC01F15ED2500E5E145 /* NearBy */ = {
+			isa = PBXGroup;
+			children = (
+				D575298E1D08F3D100B1EB6F /* NearByTableViewCell.h */,
+				D575298F1D08F3D100B1EB6F /* NearByTableViewCell.m */,
+				D57529901D08F3D100B1EB6F /* NearByTableViewCell.xib */,
+			);
+			name = NearBy;
+			sourceTree = "<group>";
+		};
+		D5212EC11F15ED3200E5E145 /* Dynamic List Item */ = {
+			isa = PBXGroup;
+			children = (
+				D538FE361C6E6DAE00BBB470 /* ItemsTableViewCell.h */,
+				D538FE371C6E6DAE00BBB470 /* ItemsTableViewCell.m */,
+				D538FE381C6E6DAE00BBB470 /* ItemsTableViewCell.xib */,
+			);
+			name = "Dynamic List Item";
+			sourceTree = "<group>";
+		};
+		D5212EC21F15ED5A00E5E145 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				D5212EC41F15ED7800E5E145 /* Tour Booking */,
+				D5212EC31F15ED6800E5E145 /* Tour Ticket */,
+				D590F4AB1E2D559B00C0C4B9 /* TourTableViewCell.h */,
+				D590F4AC1E2D559B00C0C4B9 /* TourTableViewCell.m */,
+				D590F4AD1E2D559B00C0C4B9 /* TourTableViewCell.xib */,
+			);
+			name = Tour;
+			sourceTree = "<group>";
+		};
+		D5212EC31F15ED6800E5E145 /* Tour Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				D538F5FB1E47AC3500AA8F14 /* TicketsTableViewCell.h */,
+				D538F5FC1E47AC3500AA8F14 /* TicketsTableViewCell.m */,
+				D538F5FD1E47AC3500AA8F14 /* TicketsTableViewCell.xib */,
+			);
+			name = "Tour Ticket";
+			sourceTree = "<group>";
+		};
+		D5212EC41F15ED7800E5E145 /* Tour Booking */ = {
+			isa = PBXGroup;
+			children = (
+				D58FE5831E5EDBDB00702A62 /* BookingTableViewCell.h */,
+				D58FE5841E5EDBDB00702A62 /* BookingTableViewCell.m */,
+				D58FE5851E5EDBDB00702A62 /* BookingTableViewCell.xib */,
+			);
+			name = "Tour Booking";
+			sourceTree = "<group>";
+		};
+		D5212EC51F15ED9700E5E145 /* Internet Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				D55660811C58A80600A42466 /* CheckInternet.h */,
+				D55660821C58A80600A42466 /* CheckInternet.m */,
+				D55660841C58AA2200A42466 /* Reachability.h */,
+				D55660851C58AA2200A42466 /* Reachability.m */,
+			);
+			name = "Internet Connectivity";
+			sourceTree = "<group>";
+		};
+		D5212EC61F15EDBC00E5E145 /* UIViewAnnimation */ = {
+			isa = PBXGroup;
+			children = (
+				D5E093C11D7E57F80085D1B8 /* UIViewAnimation.h */,
+				D5E093C21D7E57F80085D1B8 /* UIViewAnimation.m */,
+			);
+			name = UIViewAnnimation;
+			sourceTree = "<group>";
+		};
+		D5212EC71F15EDF700E5E145 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D52537171E1A9D4E00658CF3 /* DBConnect.h */,
+				D52537181E1A9D4E00658CF3 /* DBConnect.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		D5212EC81F15EE0C00E5E145 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				D503E8031BE28B1E00C1AC0B /* PlaceObject.h */,
+				D503E8041BE28B1E00C1AC0B /* PlaceObject.m */,
+			);
+			name = Place;
+			sourceTree = "<group>";
+		};
+		D5212EC91F15EE2000E5E145 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				D58267961E28C8670017CAE5 /* TourObject.h */,
+				D58267971E28C8670017CAE5 /* TourObject.m */,
+			);
+			name = Tour;
+			sourceTree = "<group>";
+		};
+		D5212ECA1F15EE2D00E5E145 /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				D517F11A1C5F903D0000502E /* HotelObject.h */,
+				D517F11B1C5F903E0000502E /* HotelObject.m */,
+			);
+			name = Hotel;
+			sourceTree = "<group>";
+		};
+		D5212ECB1F15EE4500E5E145 /* NearBy */ = {
+			isa = PBXGroup;
+			children = (
+				D57529851D089D5D00B1EB6F /* NearByObject.h */,
+				D57529861D089D5D00B1EB6F /* NearByObject.m */,
+			);
+			name = NearBy;
+			sourceTree = "<group>";
+		};
+		D5212ECC1F15EE5A00E5E145 /* Dining */ = {
+			isa = PBXGroup;
+			children = (
+				D50C74701D31AD7600A83802 /* DinningObject.h */,
+				D50C74711D31AD7600A83802 /* DinningObject.m */,
+			);
+			name = Dining;
+			sourceTree = "<group>";
+		};
+		D5212ECD1F15EE6A00E5E145 /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				D538F5EF1E43831000AA8F14 /* ShoppingObject.h */,
+				D538F5F01E43831000AA8F14 /* ShoppingObject.m */,
+			);
+			name = Shopping;
+			sourceTree = "<group>";
+		};
+		D5212ECE1F15EE7700E5E145 /* Flight */ = {
+			isa = PBXGroup;
+			children = (
+				D5C120271E76EF3C000FD07A /* FlightObject.h */,
+				D5C120281E76EF3C000FD07A /* FlightObject.m */,
+			);
+			name = Flight;
+			sourceTree = "<group>";
+		};
+		D5212ECF1F15EE8100E5E145 /* Distance */ = {
+			isa = PBXGroup;
+			children = (
+				D598BA371D820A7E001B63D3 /* DistanceMatrixObject.h */,
+				D598BA381D820A7E001B63D3 /* DistanceMatrixObject.m */,
+			);
+			name = Distance;
+			sourceTree = "<group>";
+		};
+		D5212ED01F15EE9700E5E145 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				D58FE5801E5EAF8600702A62 /* BookingObject.h */,
+				D58FE5811E5EAF8600702A62 /* BookingObject.m */,
+			);
+			name = Booking;
+			sourceTree = "<group>";
+		};
+		D5212ED11F15EEA600E5E145 /* GpsLocation */ = {
+			isa = PBXGroup;
+			children = (
+				D567E2151E68008C00D313BE /* GpsLocationObject.h */,
+				D567E2161E68008C00D313BE /* GpsLocationObject.m */,
+			);
+			name = GpsLocation;
+			sourceTree = "<group>";
+		};
+		D533C79B1E3AE9540081A513 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D5212EB51F15EBEC00E5E145 /* Tour */,
+				D5212EB01F15EB7100E5E145 /* Attraction Tab */,
+				D5212EAF1F15EB5100E5E145 /* NearMe */,
+				D5212EAE1F15EB0800E5E145 /* Dynamic List Contents */,
+				D5212EAD1F15EAF200E5E145 /* Select Location */,
+				D5212EAC1F15EAE400E5E145 /* More */,
+				D5212EAB1F15EACF00E5E145 /* Settings */,
+				D5212EAA1F15EAAC00E5E145 /* Bookings */,
+				D5212EA91F15EA9D00E5E145 /* Favourite */,
+				D5212EA81F15EA9000E5E145 /* Home */,
+				D5212EA71F15EA8400E5E145 /* Menu */,
+				D5212EA61F15EA7300E5E145 /* Register */,
+				D5212EA51F15EA5F00E5E145 /* Login */,
+				D5212EA41F15EA4600E5E145 /* Welcome */,
+				D5212EA31F15EA2300E5E145 /* StartUp */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -883,8 +1294,8 @@
 				D5ED22161E3966FD00EDB78E /* Table Cells */,
 				D5D551941BD3C13B0046C240 /* Supporting Files */,
 				D50CCDDE1BDD131E0063CC10 /* favourites.plist */,
-				D51172961BDAFB0B006DA4E7 /* VisitMi.entitlements */,
 				D509E8491BD4CF9400C94853 /* Main.storyboard */,
+				D55F22F71E83617700389015 /* VisitMi.entitlements */,
 				D5D551951BD3C13B0046C240 /* main.m */,
 				D5D551A01BD3C13B0046C240 /* Assets.xcassets */,
 				D5D551A21BD3C13B0046C240 /* LaunchScreen.storyboard */,
@@ -896,14 +1307,10 @@
 		D5D551941BD3C13B0046C240 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D5212EC61F15EDBC00E5E145 /* UIViewAnnimation */,
+				D5212EC51F15ED9700E5E145 /* Internet Connectivity */,
 				D56684A51E1D406300A8D9B8 /* SWRevealViewController */,
 				D50C742A1D2DC1FE00A83802 /* SVWebViewController */,
-				D55660811C58A80600A42466 /* CheckInternet.h */,
-				D55660821C58A80600A42466 /* CheckInternet.m */,
-				D55660841C58AA2200A42466 /* Reachability.h */,
-				D55660851C58AA2200A42466 /* Reachability.m */,
-				D5E093C11D7E57F80085D1B8 /* UIViewAnimation.h */,
-				D5E093C21D7E57F80085D1B8 /* UIViewAnimation.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -929,39 +1336,15 @@
 		D5ED22161E3966FD00EDB78E /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D599F4F21E5079450032F548 /* CountryCell.h */,
-				D599F4F31E5079450032F548 /* CountryCell.m */,
-				D599F4F41E5079450032F548 /* CountryCell.xib */,
-				D58920F61D2C9E9B006CA1E0 /* HomeTableViewCell.h */,
-				D58920F71D2C9E9B006CA1E0 /* HomeTableViewCell.m */,
-				D58920F81D2C9E9B006CA1E0 /* HomeTableViewCell.xib */,
-				D50C747B1D31AE7200A83802 /* PlaceSearchTableViewCell.h */,
-				D50C747C1D31AE7200A83802 /* PlaceSearchTableViewCell.m */,
-				D50C747D1D31AE7200A83802 /* PlaceSearchTableViewCell.xib */,
-				D50C74631D2FD1D700A83802 /* BookmarkTableViewCell.h */,
-				D50C74641D2FD1D700A83802 /* BookmarkTableViewCell.m */,
-				D50C74651D2FD1D700A83802 /* BookmarkTableViewCell.xib */,
-				D538753C1E22068400A8FC52 /* LocationTableViewCell.h */,
-				D538753D1E22068400A8FC52 /* LocationTableViewCell.m */,
-				D538753E1E22068400A8FC52 /* LocationTableViewCell.xib */,
-				D517F1241C5FD9A90000502E /* HotelTableViewCell.h */,
-				D517F1251C5FD9A90000502E /* HotelTableViewCell.m */,
-				D517F1261C5FD9A90000502E /* HotelTableViewCell.xib */,
-				D575298E1D08F3D100B1EB6F /* NearByTableViewCell.h */,
-				D575298F1D08F3D100B1EB6F /* NearByTableViewCell.m */,
-				D57529901D08F3D100B1EB6F /* NearByTableViewCell.xib */,
-				D538FE361C6E6DAE00BBB470 /* ItemsTableViewCell.h */,
-				D538FE371C6E6DAE00BBB470 /* ItemsTableViewCell.m */,
-				D538FE381C6E6DAE00BBB470 /* ItemsTableViewCell.xib */,
-				D590F4AB1E2D559B00C0C4B9 /* TourTableViewCell.h */,
-				D590F4AC1E2D559B00C0C4B9 /* TourTableViewCell.m */,
-				D590F4AD1E2D559B00C0C4B9 /* TourTableViewCell.xib */,
-				D538F5FB1E47AC3500AA8F14 /* TicketsTableViewCell.h */,
-				D538F5FC1E47AC3500AA8F14 /* TicketsTableViewCell.m */,
-				D538F5FD1E47AC3500AA8F14 /* TicketsTableViewCell.xib */,
-				D58FE5831E5EDBDB00702A62 /* BookingTableViewCell.h */,
-				D58FE5841E5EDBDB00702A62 /* BookingTableViewCell.m */,
-				D58FE5851E5EDBDB00702A62 /* BookingTableViewCell.xib */,
+				D5212EC21F15ED5A00E5E145 /* Tour */,
+				D5212EC11F15ED3200E5E145 /* Dynamic List Item */,
+				D5212EC01F15ED2500E5E145 /* NearBy */,
+				D5212EBF1F15ED0900E5E145 /* Hotel */,
+				D5212EBE1F15ECF900E5E145 /* Location */,
+				D5212EBD1F15ECEC00E5E145 /* Favourite */,
+				D5212EBC1F15ECD900E5E145 /* Place */,
+				D5212EBB1F15ECC600E5E145 /* Home */,
+				D5212EBA1F15ECBA00E5E145 /* Country */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -969,30 +1352,19 @@
 		D5ED22171E39678000EDB78E /* App's Objects */ = {
 			isa = PBXGroup;
 			children = (
-				D52537171E1A9D4E00658CF3 /* DBConnect.h */,
-				D52537181E1A9D4E00658CF3 /* DBConnect.m */,
+				D5212ED11F15EEA600E5E145 /* GpsLocation */,
+				D5212ED01F15EE9700E5E145 /* Booking */,
+				D5212ECF1F15EE8100E5E145 /* Distance */,
+				D5212ECE1F15EE7700E5E145 /* Flight */,
+				D5212ECD1F15EE6A00E5E145 /* Shopping */,
+				D5212ECC1F15EE5A00E5E145 /* Dining */,
+				D5212ECB1F15EE4500E5E145 /* NearBy */,
+				D5212ECA1F15EE2D00E5E145 /* Hotel */,
+				D5212EC91F15EE2000E5E145 /* Tour */,
+				D5212EC81F15EE0C00E5E145 /* Place */,
+				D5212EC71F15EDF700E5E145 /* Database */,
 				D5D551971BD3C13B0046C240 /* AppDelegate.h */,
 				D5D551981BD3C13B0046C240 /* AppDelegate.m */,
-				D503E8031BE28B1E00C1AC0B /* PlaceObject.h */,
-				D503E8041BE28B1E00C1AC0B /* PlaceObject.m */,
-				D58267961E28C8670017CAE5 /* TourObject.h */,
-				D58267971E28C8670017CAE5 /* TourObject.m */,
-				D517F11A1C5F903D0000502E /* HotelObject.h */,
-				D517F11B1C5F903E0000502E /* HotelObject.m */,
-				D57529851D089D5D00B1EB6F /* NearByObject.h */,
-				D57529861D089D5D00B1EB6F /* NearByObject.m */,
-				D50C74701D31AD7600A83802 /* DinningObject.h */,
-				D50C74711D31AD7600A83802 /* DinningObject.m */,
-				D538F5EF1E43831000AA8F14 /* ShoppingObject.h */,
-				D538F5F01E43831000AA8F14 /* ShoppingObject.m */,
-				D5C120271E76EF3C000FD07A /* FlightObject.h */,
-				D5C120281E76EF3C000FD07A /* FlightObject.m */,
-				D598BA371D820A7E001B63D3 /* DistanceMatrixObject.h */,
-				D598BA381D820A7E001B63D3 /* DistanceMatrixObject.m */,
-				D567E2151E68008C00D313BE /* GpsLocationObject.h */,
-				D567E2161E68008C00D313BE /* GpsLocationObject.m */,
-				D58FE5801E5EAF8600702A62 /* BookingObject.h */,
-				D58FE5811E5EAF8600702A62 /* BookingObject.m */,
 			);
 			name = "App's Objects";
 			sourceTree = "<group>";
@@ -1071,13 +1443,19 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
+							};
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.WAC = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1254,7 +1632,7 @@
 				D50C744C1D2DC1FE00A83802 /* SVWebViewController.bundle in Resources */,
 				D50C744A1D2DC1FE00A83802 /* SVWebViewController.strings in Resources */,
 				D56684CB1E1E4D9300A8D9B8 /* home.png in Resources */,
-				D52562701E81AB3500500C12 /* Expedia_TripAdvisor.png in Resources */,
+				D54ED7F41E82EBB200566DD4 /* Expedia_TripAdvisor.png in Resources */,
 				D509E84B1BD4CF9400C94853 /* Main.storyboard in Resources */,
 				D58267951E2834FC0017CAE5 /* refresh_filled.png in Resources */,
 				D58920EB1D2C9AD2006CA1E0 /* shopping_cart_loaded.png in Resources */,
@@ -1511,7 +1889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1556,7 +1934,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1573,20 +1951,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = VisitMiLogo;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = VisitMi/VisitMi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = R72HY6CC7P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = VisitMi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = splendy.visitmi.VisitMi.my;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VisitMi.identifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VisitMi/VisitMi-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1599,20 +1978,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = VisitMiLogo;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = VisitMi/VisitMi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = R72HY6CC7P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = VisitMi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = splendy.visitmi.VisitMi.my;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VisitMi.identifier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VisitMi/VisitMi-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -67,6 +67,7 @@
 @property (strong, nonatomic)NSString *Dine_type;
 @property (assign, nonatomic)BOOL open_now;
 @property (strong, nonatomic)NSString *photoReference;
+@property (strong, nonatomic)NSString *api_Type;
 
 @property(strong,nonatomic)NSData *thumbnailData;
 

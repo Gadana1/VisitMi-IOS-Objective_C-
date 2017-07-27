@@ -14,4 +14,8 @@
 
 + (BOOL) isInternetConnectionAvailable:(NSString *)URL;
 
+@property (nonatomic) Reachability *hostReachability;
+@property (nonatomic) Reachability *internetReachability;
+@property (nonatomic) Reachability *wifiReachability;
+
 @end

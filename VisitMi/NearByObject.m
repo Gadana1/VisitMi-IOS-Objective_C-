@@ -131,7 +131,7 @@
         
         if (distance < 1) {
             
-            NBO.place_distance = [NSString stringWithFormat:@"%lu m",[location[@"distance"] integerValue]];
+            NBO.place_distance = [NSString stringWithFormat:@"%lu m",(unsigned long)[location[@"distance"] integerValue]];
         }
         
         
@@ -243,7 +243,7 @@
                                      NSDictionary *venue = [response valueForKey:@"venue"];
                                      
                                      
-                                     NSLog(@"Venue count %lu",jsonArray.count);
+                                     NSLog(@"Venue count %lu",(unsigned long)jsonArray.count);
                                      
                                      if (venue != NULL)
                                      {

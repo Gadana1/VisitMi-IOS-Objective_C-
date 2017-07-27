@@ -9,54 +9,62 @@
 #import "CheckInternet.h"
 
 @implementation CheckInternet
+NSString *remoteHostName;
 
 
 
-
+- (id)init
+{
+    self = [super init];
+    if (self != nil)
+    {
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+        remoteHostName = @"www.google.com";
+        self.hostReachability = [Reachability reachabilityWithHostName:remoteHostName];
+        [self.hostReachability startNotifier];
+        
+        self.internetReachability = [Reachability reachabilityForInternetConnection];
+        [self.internetReachability startNotifier];
+        
+        self.wifiReachability = [Reachability reachabilityForLocalWiFi];
+        [self.wifiReachability startNotifier];
+    }
+    return self;
+}
 
 
 + (BOOL) isInternetConnectionAvailable:(NSString *)URL
 {
+    NetworkStatus netStatus;
+    CheckInternet *check = [CheckInternet new];
+
+    BOOL reachable = NO;
     
-    Reachability *internet;
-    
-    if(URL==NULL){
+    if (URL == NULL) {
         
-        internet= [Reachability reachabilityWithHostName:@"http://www.google.com"];
+        netStatus = [check.internetReachability currentReachabilityStatus];
         
     }
     else
     {
-        
-        internet= [Reachability reachabilityWithHostName:URL];
-        
+        remoteHostName = URL;
+        netStatus = [check.hostReachability currentReachabilityStatus];
+
     }
     
-    NetworkStatus netStatus = [internet currentReachabilityStatus];
-        
-    bool netConnection = false;
-    switch (netStatus)
+    if(netStatus == ReachableViaWWAN || netStatus == ReachableViaWiFi)
     {
-        case NotReachable:
-        {
-            NSLog(@"Internet Access Not Available");
-            
-            netConnection = false;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            netConnection = true;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            netConnection = true;
-            break;
-        }
     
+        reachable = YES;
     }
-    return netConnection;
+    else
+    {
+        reachable = NO;
+    }
+    
+    
+    return reachable;
+   
 }
 
 @end

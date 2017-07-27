@@ -14,8 +14,17 @@
 #import "TourTableViewCell.h"
 #import "TourViewController.h"
 
+
+@protocol tourTableDelegate <NSObject>
+
+@optional
+- (void)toScrollViewAction:(UITableView *)tableView;
+
+@end
+
 @interface OverviewViewController : UIViewController<UITabBarControllerDelegate,UIScrollViewDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource, imageDelegate>
 
+@property(strong, nonatomic)id<tourTableDelegate>delegate;
 
 @property (strong, nonatomic) TourObject *TO;
 
@@ -44,7 +53,7 @@
 
 @property (weak, nonatomic)  UIActivityIndicatorView *spinner;
 
-@property (weak, nonatomic) IBOutlet UIView *contentsView;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentsView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *leftImg;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImg;

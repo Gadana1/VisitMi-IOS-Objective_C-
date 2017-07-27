@@ -216,7 +216,7 @@
     {
         
         //Download Country Flag
-        NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",app.serverAddress,PO.country_Code];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@.png",app.serverAddress,PO.country_Code];
         
         PO.delegate = self;
         [PO downloadImages:urlStr :0 :PO.country_Code :i];
@@ -299,7 +299,7 @@
         //get directory from app
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *fileName = [[NSString alloc]initWithFormat:@"USERCOUNTRY.plist"];
-        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
         
         //check if File directoory has been created
         BOOL isDirectory;
@@ -537,7 +537,6 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSLog(@"Textfield data = %@",textField.text);
     
     if ([textField isEqual:self.firstnameTXT])
     {
@@ -710,7 +709,7 @@
                            //get directory from app
                            NSFileManager *fileManager = [NSFileManager defaultManager];
                            NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.png"];
-                           NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+                           NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
                            
                            //check if File directoory has been created
                            BOOL isDirectory;
@@ -759,20 +758,13 @@
                 
                 if (updatedPass==NULL || [updatedPass isEqualToString:@""] || [updatedPass isKindOfClass:[NSNull class]])
                 {
-                    NSLog(@"Email for login = *%@*",email);
-                    NSLog(@"Current Password for login = *%@*",currentPass);
                     
                     [conn LoginUser:email Password:currentPass];
                     
                 }
                 else
                 {
-                    
-                    NSLog(@"Email for login = *%@*",email);
-                    NSLog(@"New password for login = *%@*",updatedPass);
-                    
                     [conn LoginUser:email Password:updatedPass];
-                    
 
                 }
                 
@@ -923,15 +915,14 @@
         if (doneFName && doneLName && doneNumber && donePassword && doneRetypePass)
         {
             
-            password = self.passwordTXT.text!=NULL || ![self.passwordTXT.text isEqualToString:@""]? self.passwordTXT.text:NULL;
+            password = self.passwordTXT.text==NULL || [self.passwordTXT.text isEqualToString:@""]?@"":self.passwordTXT.text;
             
             updatedPass = password;
             
             fName = self.firstnameTXT.text;
             lName = self.lastnameTXT.text;
-            number = self.phoneTXT.text;
-            numberWithCode = [NSString stringWithFormat:@"%@%@",dialingCode,number];
-            countryCode = app.userCountry[@"CountryCode"];
+            number = self.phoneTXT.text == NULL || [self.phoneTXT.text isEqualToString:@""]?app.userDetails[@"Phone"]:[NSString stringWithFormat:@"%@%@",dialingCode,self.phoneTXT.text];
+            countryCode = self.phoneTXT.text == NULL || [self.phoneTXT.text isEqualToString:@""]?app.userDetails[@"CountryCode"]:app.userCountry[@"CountryCode"];
             email = app.userDetails[@"Email"];
             
             [self.loading setHidden:NO];
@@ -961,8 +952,6 @@
                                   handler:^(UIAlertAction * action)
                                   {
                                       currentPass = confirmPassTXT.text;
-                                      NSLog(@"currentP = %@",currentPass);
-                                      NSLog(@"currentP lnght = %lu",currentPass.length);
                                       
                                       if (currentPass==NULL || [currentPass isEqualToString:@""] || currentPass.length < 1 || [currentPass isKindOfClass:[NSNull class]])
                                       {
@@ -980,7 +969,7 @@
                                           conn.delegate = self;
                                           isLogin = false;
 
-                                          [conn UpdateUser:fName SecondName:lName Email:email PhoneNumber:[NSString stringWithFormat:@"%@%@",app.userCountry[@"DialingCode"],number] NewPassword:password CountryCode:countryCode CurrentPassword:currentPass];
+                                          [conn UpdateUser:fName SecondName:lName Email:email PhoneNumber:number NewPassword:password CountryCode:countryCode CurrentPassword:currentPass];
                                           
                                           [self.view setUserInteractionEnabled:NO];
                                           

@@ -335,7 +335,8 @@ static int curveValues[] = {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO];
-    
+    [self.tableView setUserInteractionEnabled:YES];
+
     
 }
 
@@ -789,7 +790,7 @@ didFailAutocompleteWithError:(NSError *)error
 
         [self updateTableData];
     }
-    NSLog(@" Display region array count %lu",self.displayRegionArr.count);
+    NSLog(@" Display region array count %lu",(unsigned long)self.displayRegionArr.count);
     
 }
 
@@ -914,9 +915,6 @@ didFailAutocompleteWithError:(NSError *)error
                     [self.searchArr addObject:searchObj];
                     
                     [self updateTableData];
-                    self.PO.delegate = self;
-                    
-                    [self.PO downloadImages:self.PO.thumbnailUrl :0 :self.PO.name :[self.searchArr count]-1];
 
                 }
                 
@@ -925,7 +923,6 @@ didFailAutocompleteWithError:(NSError *)error
         }
         else  if([_displayRegion isEqualToString:@"Tours & Activities"])
         {
-            PlaceObject *PO = [[PlaceObject alloc]init];
 
             for (TourObject *searchObj in self.displayRegionArr)
             {
@@ -937,12 +934,6 @@ didFailAutocompleteWithError:(NSError *)error
                     [self.searchArr addObject:searchObj];
                     
                     [self updateTableData];
-
-                    //download images
-                    int imgNum = 0;
-                    PO.delegate = self;
-                    [PO downloadImages:searchObj.thumbnailURL :imgNum :searchObj.title :[self.searchArr count]-1];
-                    
 
                 }
                 
@@ -1067,8 +1058,6 @@ didFailAutocompleteWithError:(NSError *)error
     
     [self updateTableData];
 
-    self.PO.delegate = self;
-    [self.PO downloadImages:self.PO.thumbnailUrl :0 :self.PO.name :[self.displayRegionArr count]-1];
     
 }
 
@@ -1090,11 +1079,6 @@ didFailAutocompleteWithError:(NSError *)error
         
         [self updateTableData];
 
-        self.PO = [[PlaceObject alloc]init];
-        self.PO.delegate = self;
-        [self.PO downloadImages:self.TO.thumbnailURL :0 :self.TO.title :[self.displayRegionArr count]-1];
-        
-
     }
     
 }
@@ -1111,11 +1095,6 @@ didFailAutocompleteWithError:(NSError *)error
         
         [self updateTableData];
 
-        self.HO = (HotelObject *)hotelOBJ;
-        self.PO = [[PlaceObject alloc]init];
-        self.PO.delegate = self;
-        [self.PO downloadImages:self.HO.thumbnailURL :1 :self.HO.name :[self.displayRegionArr count]-1];
-                
     }
   
 }
@@ -1164,8 +1143,21 @@ didFailAutocompleteWithError:(NSError *)error
             
         }
         
+        
+        
         [self updateTableData];
         
+    }
+    else
+    {
+        NSArray *sortedLocations;
+        
+        sortedLocations = [_displayRegionArr sortedArrayUsingComparator: ^(NearByObject *N1, NearByObject *N2) {
+            return [[NSNumber numberWithDouble:N1.distance] compare:[NSNumber numberWithDouble:N2.distance]];
+        }];
+        
+        self.displayRegionArr = [NSMutableArray arrayWithArray:sortedLocations];
+        [self.tableView reloadData];
     }
     
 }
@@ -1199,6 +1191,15 @@ didFailAutocompleteWithError:(NSError *)error
             self.itemsCell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
 
             self.PO= (PlaceObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
+            
+            //Download images
+            if(!self.PO.img)
+            {
+                
+                self.PO.delegate = self;
+                [self.PO downloadImages:self.PO.thumbnailUrl :0 :self.PO.name :indexPath.row];
+                
+            }
             
             //set up spinner for image to indicate loading
             [self.itemsCell.spinner startAnimating];
@@ -1273,6 +1274,8 @@ didFailAutocompleteWithError:(NSError *)error
             self.placeCell.taxiBT.tag = indexPath.row;
             [self.placeCell.taxiBT addTarget:self action:@selector(callToTaxiApp:) forControlEvents:UIControlEventTouchUpInside];
             
+            [self.placeCell setAccessoryType:UITableViewCellAccessoryDetailButton];
+
             return self.placeCell;
 
         }
@@ -1343,6 +1346,15 @@ didFailAutocompleteWithError:(NSError *)error
             self.hotelCell = [tableView dequeueReusableCellWithIdentifier:@"HotelCell" forIndexPath:indexPath];
             
             self.HO= (HotelObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
+            
+            //Download images
+            if(!self.HO.thumbnailData)
+            {
+                self.PO = [[PlaceObject alloc]init];
+                self.PO.delegate = self;
+                [self.PO downloadImages:self.HO.thumbnailURL :1 :self.HO.name :indexPath.row];
+                
+            }
             
             self.hotelCell.nameLB.text = self.HO.name;
             self.hotelCell.cityLB.text = self.HO.city;
@@ -1432,6 +1444,15 @@ didFailAutocompleteWithError:(NSError *)error
             self.tourCell = [tableView dequeueReusableCellWithIdentifier:@"tourCell" forIndexPath:indexPath];
             self.TO= (TourObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
             
+            //Download Images
+            if(!self.TO.thumbnailData)
+            {
+                self.PO = [[PlaceObject alloc]init];
+                self.PO.delegate = self;
+                [self.PO downloadImages:self.TO.thumbnailURL :0 :self.TO.title :indexPath.row];
+                
+            }
+
             self.tourCell.nameLB.text = self.TO.title;
             self.tourCell.durationLB.text = self.TO.duration;
             self.tourCell.currencyLB.text = self.TO.currencyCode;
@@ -1488,6 +1509,16 @@ didFailAutocompleteWithError:(NSError *)error
 
             self.PO= (PlaceObject *)[self.searchArr objectAtIndex:indexPath.row];
             
+            //Download images
+            if(!self.PO.img)
+            {
+                
+                
+                self.PO.delegate = self;
+                [self.PO downloadImages:self.PO.thumbnailUrl :0 :self.PO.name :indexPath.row];
+                
+            }
+            
             //set up spinner for image to indicate loading
             [self.itemsCell.spinner startAnimating];
             
@@ -1536,6 +1567,15 @@ didFailAutocompleteWithError:(NSError *)error
         {
             self.tourCell = [tableView dequeueReusableCellWithIdentifier:@"tourCell" forIndexPath:indexPath];
             self.TO= (TourObject *)[self.searchArr objectAtIndex:indexPath.row];
+            
+            //Download Images
+            if(!self.TO.thumbnailData)
+            {
+                self.PO = [[PlaceObject alloc]init];
+                self.PO.delegate = self;
+                [self.PO downloadImages:self.TO.thumbnailURL :0 :self.TO.title :indexPath.row];
+                
+            }
             
             self.tourCell.nameLB.text = self.TO.title;
             self.tourCell.durationLB.text = self.TO.duration;
@@ -1766,7 +1806,7 @@ didFailAutocompleteWithError:(NSError *)error
     if ([self checkIfFavrouite:sender.tag])
     {
         
-        NSLog(@" item %lu already a favourite ",sender.tag);
+        NSLog(@" item %lu already a favourite ",(long)sender.tag);
         
         NSMutableArray* tmpArray = [self.theFav copy];
         
@@ -1862,8 +1902,6 @@ didFailAutocompleteWithError:(NSError *)error
 -(void)openWebView: (UIButton *)sender
 {
     
-    NSLog(@"button tapped Index %ld",sender.tag);
-    
     NSUInteger row = sender.tag;
     
     self.HO = (HotelObject *)[self.displayRegionArr objectAtIndex:row];
@@ -1884,13 +1922,183 @@ didFailAutocompleteWithError:(NSError *)error
     
 }
 
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+
+    
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No Extra Info !" message:@"sorry, no available website for selected place." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"Ok"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+    
+    if([_displayRegion isEqualToString:@"Dining"])
+    {
+        [self.tableView setUserInteractionEnabled:NO];
+
+        self.DO = (DinningObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
+        
+        self.svwWebView = [[SVWebViewController alloc]init];
+        
+        self.svwWebView.favoriteFilter = self.DO.name;
+        self.svwWebView.favoriteType = self.displayRegion;
+        self.svwWebView.favoriteImgURL = nil;
+        self.svwWebView.favoriteImgNO = @"1";
+        self.svwWebView.title = self.DO.name;
+       
+        if ([self.DO.api_Type isEqualToString:@"G"]) {
+            
+            GMSPlacesClient *placesClient = [GMSPlacesClient new];
+            [placesClient lookUpPlaceID:self.DO.place_id callback:^(GMSPlace *place, NSError *error) {
+                if (error != nil) {
+                    NSLog(@"Place Details error %@", [error localizedDescription]);
+                    return;
+                }
+                
+                if (place != nil) {
+                    
+                    if ([[UIApplication sharedApplication] canOpenURL:place.website])
+                    {
+                        [self.svwWebView loadWebPage:place.website.absoluteString];
+                        
+                        [self.navigationController pushViewController:self.svwWebView animated:YES];
+                        
+                    }
+                    else
+                    {
+                        [self.navigationController presentViewController:alert animated:YES completion:nil];
+
+                    }
+                }
+                else
+                {
+                    [self.navigationController presentViewController:alert animated:YES completion:nil];
+                }
+            }];
+        }
+        else if ([self.DO.api_Type isEqualToString:@"Z"]) {
+            
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.DO.canonicalURL]])
+            {
+                
+                [self.svwWebView loadWebPage:self.DO.canonicalURL];
+                
+                [self.navigationController pushViewController:self.svwWebView animated:YES];
+                
+            }
+            else
+            {
+                [self.navigationController presentViewController:alert animated:YES completion:nil];
+                
+            }
+            
+        }
+        else if ([self.DO.api_Type isEqualToString:@"FS"]) {
+            
+            self.NBO = [NearByObject new];
+            [self.NBO downloadItemsWithId:self.DO.place_id];
+            self.NBO.delegate = self;
+            
+            [self.navigationController pushViewController:self.svwWebView animated:YES];
+            
+        }
+        
+        
+        /*DistanceMatrixObject *distance = [[DistanceMatrixObject alloc]init];
+         [distance getDistance:self.coordinate.latitude OrignLongitude:self.coordinate.longitude DistinationLatitude:self.DO.latitude DistinationLongitude:self.DO.longitude Modes:[NSArray arrayWithObjects:@"walking",nil]];*/
+        
+        
+        [self.tableView setUserInteractionEnabled:YES];
+
+    }
+    
+    else if([_displayRegion isEqualToString:@"Shopping"])
+    {
+        [self.tableView setUserInteractionEnabled:NO];
+        
+        self.SHOP = (ShoppingObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
+        
+        self.svwWebView = [[SVWebViewController alloc]init];
+        
+        self.svwWebView.favoriteFilter = self.SHOP.name;
+        self.svwWebView.favoriteType = self.displayRegion;
+        self.svwWebView.favoriteImgURL = nil;
+        self.svwWebView.favoriteImgNO = @"1";
+        self.svwWebView.title = self.SHOP.name;
+        
+        if ([self.SHOP.api_Type isEqualToString:@"G"]) {
+            
+            GMSPlacesClient *placesClient = [GMSPlacesClient new];
+            [placesClient lookUpPlaceID:self.SHOP.place_id callback:^(GMSPlace *place, NSError *error) {
+                if (error != nil) {
+                    NSLog(@"Place Details error %@", [error localizedDescription]);
+                    return;
+                }
+                
+                if (place != nil) {
+                    
+                    if ([[UIApplication sharedApplication] canOpenURL:place.website])
+                    {
+                        [self.svwWebView loadWebPage:place.website.absoluteString];
+                        
+                        [self.navigationController pushViewController:self.svwWebView animated:YES];
+                        
+                    }
+                    else
+                    {
+                        [self.navigationController presentViewController:alert animated:YES completion:nil];
+                        
+                    }
+                }
+                else
+                {
+                    [self.navigationController presentViewController:alert animated:YES completion:nil];
+                }
+            }];
+        }
+        else if ([self.SHOP.api_Type isEqualToString:@"FS"]) {
+            
+            self.NBO = [NearByObject new];
+            [self.NBO downloadItemsWithId:self.SHOP.place_id];
+            self.NBO.delegate = self;
+            
+            [self.navigationController pushViewController:self.svwWebView animated:YES];
+            
+        }
+        
+        
+        [self.tableView setUserInteractionEnabled:YES];
+        
+    }
+
+
+}
+
 //Selecting a cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+   
+    
     if([_displayRegion isEqualToString:@"Attractions"])
     {
+        [self.tableView setUserInteractionEnabled:NO];
+
+        self.itemsCell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        [self.itemsCell.loadCell setHidden:NO];
+        [self.itemsCell.loadCell startAnimating];
         
         self.tabBarController  = [self.storyboard instantiateViewControllerWithIdentifier:@"detailsTab"];
         
@@ -1944,9 +2152,16 @@ didFailAutocompleteWithError:(NSError *)error
              
              dispatch_async(dispatch_get_main_queue(), ^(void)
                             {
+                                self.itemsCell = [tableView cellForRowAtIndexPath:indexPath];
+                                [self.itemsCell.loadCell stopAnimating];
+                                [self.itemsCell.loadCell setHidden:YES];
+                                
                                 myTabBarController *tab = (myTabBarController *)callingObject;
                                 
                                 [self.navigationController pushViewController:tab animated:YES];
+                                
+                                [self.tableView setUserInteractionEnabled:YES];
+
                             });
              
          }];
@@ -1955,6 +2170,8 @@ didFailAutocompleteWithError:(NSError *)error
     }
     else if([_displayRegion isEqualToString:@"Tours & Activities"])
     {
+        [self.tableView setUserInteractionEnabled:NO];
+
         TourViewController *tours = [self.storyboard instantiateViewControllerWithIdentifier:@"tourView"];
         
         if(self.isFilltered)
@@ -1987,22 +2204,16 @@ didFailAutocompleteWithError:(NSError *)error
         
         [self.navigationController pushViewController:tours animated:YES];
         
-    }
-    
-    else if([_displayRegion isEqualToString:@"Dining"])
-    {
-        self.DO = (DinningObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
-        
-        DistanceMatrixObject *distance = [[DistanceMatrixObject alloc]init];
-        [distance getDistance:self.coordinate.latitude OrignLongitude:self.coordinate.longitude DistinationLatitude:self.DO.latitude DistinationLongitude:self.DO.longitude Modes:[NSArray arrayWithObjects:@"walking",nil]];
+        [self.tableView setUserInteractionEnabled:YES];
+
         
     }
     
+   
     else if([_displayRegion isEqualToString:@"Nearby"])
     {
-        
-        NSLog(@"Cell %ld selected",indexPath.row);
-        
+        [self.tableView setUserInteractionEnabled:NO];
+
         if(self.isFilltered)
         {
             self.NBO = (NearByObject *)[self.displayRegionArr objectAtIndex:indexPath.row];
@@ -2027,40 +2238,18 @@ didFailAutocompleteWithError:(NSError *)error
         
         [self.navigationController pushViewController:self.svwWebView animated:YES];
         
-        
+        [self.tableView setUserInteractionEnabled:YES];
 
     }
-
    
 }
 
-
-// Action whent cell is highlighted
--(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([_displayRegion isEqualToString:@"Attractions"])
-    {
-        self.itemsCell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        [self.itemsCell.loadCell setHidden:NO];
-        [self.itemsCell.loadCell startAnimating];
-
-    }
-    
-}
 
 
 // Action whent cell is not highlighted
 -(void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_displayRegion isEqualToString:@"Attractions"])
-    {
-        self.itemsCell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        [self.itemsCell.loadCell stopAnimating];
-        [self.itemsCell.loadCell setHidden:YES];
-    }
-   
+    
     
 }
 
@@ -2228,9 +2417,7 @@ didFailAutocompleteWithError:(NSError *)error
 
 //Perform Fillter action
 -(void)setFilteredInterest:(NSInteger)selectedScope{
-    
-    NSLog(@"scope = %lu",selectedScope);
-    
+        
     if([[self.scopes objectAtIndex:selectedScope]isEqualToString:@"All"])
     {
         
@@ -2249,10 +2436,6 @@ didFailAutocompleteWithError:(NSError *)error
                 [self.displayRegionArr addObject:scopeObj];
                 scopeObj.delegate = self;
                 
-                //download images
-                int imgNum = 0;
-                [scopeObj downloadImages:scopeObj.thumbnailUrl :imgNum :scopeObj.name :[self.displayRegionArr count]-1];
-                
             }
 
         }
@@ -2263,14 +2446,7 @@ didFailAutocompleteWithError:(NSError *)error
                 NSLog(@"selected scope = %@",[self.scopes objectAtIndex:selectedScope]);
                 
                 [self.displayRegionArr addObject:scopeObj];
-                
-                PlaceObject *PO = [[PlaceObject alloc]init];
-                PO.delegate = self;
-                
-                //download images
-                int imgNum = 0;
-                [PO downloadImages:scopeObj.thumbnailURL :imgNum :scopeObj.title :[self.displayRegionArr count]-1];
-                
+               
             }
 
             
@@ -2309,10 +2485,6 @@ didFailAutocompleteWithError:(NSError *)error
                         [self.searchArr addObject:searchObj];
                         searchObj.delegate = self;
                         
-                        //download images
-                        int imgNum = 0;
-                        [searchObj downloadImages:searchObj.thumbnailUrl :imgNum :searchObj.name :[self.searchArr count]-1];
-                        
                     }
                 }
                 
@@ -2326,14 +2498,7 @@ didFailAutocompleteWithError:(NSError *)error
                     if(stringRange.location!=NSNotFound)
                     {
                         [self.searchArr addObject:searchObj];
-                        
-                        PlaceObject *PO = [[PlaceObject alloc]init];
-                        PO.delegate = self;
-                        
-                        //download images
-                        int imgNum = 0;
-                        [PO downloadImages:searchObj.thumbnailURL :imgNum :searchObj.title :[self.displayRegionArr count]-1];
-
+                       
                     }
                    
                    
@@ -2382,11 +2547,7 @@ didFailAutocompleteWithError:(NSError *)error
                 {
                     NSLog(@"selected scope = %@",[self.scopes objectAtIndex:selectedScope]);
                     [self.displayRegionArr addObject:scopeObj];
-                    scopeObj.delegate = self;
                     
-                    //download images
-                    int imgNum =1;
-                    [scopeObj downloadImages:scopeObj.thumbnailUrl :imgNum :scopeObj.name :[self.displayRegionArr count]-1];
                 }
                 
                 
@@ -2403,13 +2564,7 @@ didFailAutocompleteWithError:(NSError *)error
                     NSLog(@"selected scope = %@",[self.scopes objectAtIndex:selectedScope]);
                     
                     [self.displayRegionArr addObject:scopeObj];
-                    
-                    PlaceObject *PO = [[PlaceObject alloc]init];
-                    PO.delegate = self;
-                    
-                    //download images
-                    int imgNum = 0;
-                    [PO downloadImages:scopeObj.thumbnailURL :imgNum :scopeObj.title :[self.displayRegionArr count]-1];
+                   
                 }
                 
                 
@@ -2456,11 +2611,6 @@ didFailAutocompleteWithError:(NSError *)error
                     if(stringRange.location!=NSNotFound)
                     {
                         [self.searchArr addObject:searchObj];
-                        searchObj.delegate = self;
-                        
-                        //download images
-                        int imgNum = 0;
-                        [searchObj downloadImages:searchObj.thumbnailUrl :imgNum :searchObj.name :[self.searchArr count]-1];
                         
                     }
                 }
@@ -2475,13 +2625,6 @@ didFailAutocompleteWithError:(NSError *)error
                     if(stringRange.location!=NSNotFound)
                     {
                         [self.searchArr addObject:searchObj];
-                        
-                        PlaceObject *PO = [[PlaceObject alloc]init];
-                        PO.delegate = self;
-                        
-                        //download images
-                        int imgNum = 0;
-                        [PO downloadImages:searchObj.thumbnailURL :imgNum :searchObj.title :[self.displayRegionArr count]-1];
                         
                     }
                     

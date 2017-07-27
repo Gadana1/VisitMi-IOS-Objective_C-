@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSString *bookingStatus;
 @property (strong, nonatomic) NSString *currencyCode;
 @property (assign, nonatomic) CGFloat price;
+@property (assign, nonatomic) BOOL payment;
 
 @property (strong, nonatomic) UIColor *bookingStatusColor;
 

@@ -48,6 +48,8 @@ AppDelegate *app;
     self.userImage.layer.shadowOffset = CGSizeMake(0, 0);
     [self.userImage.layer setCornerRadius:self.userImage.frame.size.height/2];
     [self.userImage.layer setMasksToBounds:YES];
+    
+    [self checkLogInStatus];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -55,7 +57,6 @@ AppDelegate *app;
     [super viewDidAppear:YES];
     
     
-    [self checkLogInStatus];
 
     //Set Color to identify  default selected cell
     for (UIView *view in [[[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedRow inSection:selectedSection]] contentView] subviews])
@@ -68,8 +69,6 @@ AppDelegate *app;
         
     }
     
-
-  
     
 }
 
@@ -83,7 +82,7 @@ AppDelegate *app;
     NSString *CRSymbol = @"Copyright © ";
     self.copyrightLB.text = [NSString stringWithFormat:@"%@%@",CRSymbol,app.appData[@"Copyright"]];
     
-    if (app.userDetails[@"Name"]) {
+    if (app.userDetails[@"Email"]) {
         [self.loginLB setText:@"Log Out"];
         self.loginIMG.image =[UIImage imageNamed:@"exit.png"];
         self.logInStatus = true;
@@ -120,7 +119,6 @@ AppDelegate *app;
              
              selectedRow = indexPath.row;
              selectedSection = indexPath.section;
-             NSLog(@"row %lu section %lu selected",indexPath.row, indexPath.section);
              
              
              //Unselect other cells
@@ -137,7 +135,6 @@ AppDelegate *app;
                         
                      }
                      
-                     NSLog(@"row %d section %lu unselected",index, indexPath.section);
                  }
                 
              }
@@ -197,17 +194,13 @@ AppDelegate *app;
 
 -(void)dbConnResponse:(id)placeObj
 {
-    PlaceObject *PO = (PlaceObject *)placeObj;
-    if ([PO.dbstatus isEqualToString:@"success"]) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void)
-                       {
-                           [self checkLogInStatus];
-                           
-                       });
-        
+    dispatch_async(dispatch_get_main_queue(), ^(void)
+                   {
+                       [self checkLogInStatus];
+                       
+                   });
+    
 
-    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -217,7 +210,35 @@ AppDelegate *app;
     [self.navigationController setNavigationBarHidden:YES];
     self.tableView.contentOffset = CGPointMake(0, 0);
     
-  
+    DBConnect *conn = [[DBConnect alloc]init];
+    
+    [conn VerifyUser:app.userDetails[@"Email"] Session:app.userDetails[@"SessionID"] CallBack:^(id placeObject)
+     {
+         
+         dispatch_async(dispatch_get_main_queue(), ^(void)
+                        {
+                            
+                            PlaceObject *PO = (PlaceObject *)placeObject;
+                            
+                            
+                            if ([PO.dbstatus isEqualToString:@"success"])
+                            {
+                                NSLog(@"%@",PO.dbmessage);
+                                [self checkLogInStatus];
+
+                            }
+                            else
+                            {
+                                conn.delegate = self;
+                                [conn LogOutUser:app.userDetails[@"Email"] SessionID:app.userDetails[@"SessionID"]];
+
+                            }
+                            
+                            
+                        });
+         
+         
+     }];
    
 }
 

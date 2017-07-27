@@ -42,7 +42,6 @@ int count;
                 
                                  if (data!=NULL && (!error))
                                  {
-                                     NSLog(@"Append data arr lenght %lu",data.length);
 
                                      // Parse the JSON that came in
                                      NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
@@ -115,7 +114,8 @@ int count;
     SHOP.icon_url = nearByData[@"icon"];
     SHOP.place_id = nearByData[@"place_id"];
     SHOP.address = nearByData[@"vicinity"];
-    
+    SHOP.api_Type = @"G";
+
     if([nearByData valueForKey:@"geometry"])
     {
         geometry = [nearByData valueForKey:@"geometry"];
@@ -129,7 +129,7 @@ int count;
     if([nearByData valueForKey:@"opening_hours"])
     {
         opening_hours = [nearByData valueForKey:@"opening_hours"];
-        SHOP.open_now = opening_hours[@"open_now"];
+        SHOP.open_now = (BOOL)opening_hours[@"open_now"];
         
     }
     
@@ -347,7 +347,8 @@ int count;
     SHOP.icon_url = nearByData[@"icon"];
     SHOP.place_id = nearByData[@"id"];
     SHOP.delegate = self.delegate;
-    
+    SHOP.api_Type = @"FS";
+
     if([nearByData valueForKey:@"contact"])
     {
         contact = [nearByData valueForKey:@"contact"];

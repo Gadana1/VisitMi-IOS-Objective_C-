@@ -180,7 +180,6 @@
 
 -(void)openMapView: (UIButton *)sender
 {
-    NSLog(@"Loc button tapped Index %ld",sender.tag);
     
     NSUInteger row = sender.tag;
     self.NBO = (NearByObject *)[self.nearByItems objectAtIndex:row];
@@ -200,9 +199,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"Cell %ld selected",indexPath.row);
-    
+        
     self.NBO = (NearByObject *)[self.nearByItems objectAtIndex:indexPath.row];
     
     self.svwWebView = [[SVWebViewController alloc]init];

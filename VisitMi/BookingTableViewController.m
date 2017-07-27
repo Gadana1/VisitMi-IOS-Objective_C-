@@ -11,10 +11,14 @@
 @implementation BookingTableViewController
 
 UIActivityIndicatorView *loading;
+NSTimer *timer;
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    app.bookingUpdated = false;
     
     self.revealViewController.delegate = self;
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -54,18 +58,20 @@ UIActivityIndicatorView *loading;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void)
-                   {
-                       [self update];
-                   });
+    [self.navigationController setNavigationBarHidden:NO];
+
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+
+    if (!app.bookingUpdated)
+     {
+         [self update];
+     }
     
 }
+
 -(void)updateTable
 {
-    
     [self performSelector:@selector(update) withObject:nil afterDelay:1];
-    [self.refreshControl endRefreshing];
 
 }
 
@@ -74,31 +80,61 @@ UIActivityIndicatorView *loading;
     
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    self.bookings = [[NSMutableArray alloc]init];
     
-    if (!app.bookingUpdated)
+    if (app.userDetails[@"Email"] == NULL || [app.userDetails[@"Email"] isEqualToString:@""])
     {
-        DBConnect *conn = [[DBConnect alloc]init];
-        conn.delegate = self;
-        [conn GetBookingsForUser:app.userDetails[@"Email"]];
+        [app.userBookings removeAllObjects];
+        app.userBookings = [[NSMutableArray alloc]init];
+        app.bookingUpdated = false;
+        
+        self.backgroundView.center = self.view.center;
+        self.bgViewText.text = @"Please Login to view Bookings";
+        [self.tableView setBackgroundView:self.backgroundView];
         
     }
     else
     {
-        if (app.userDetails[@"Email"] == NULL) {
-            
-            app.userBookings = [[NSMutableArray alloc]init];
-            app.bookingUpdated = false;
-
-        }
         
-        self.bookings = app.userBookings;
+        
+        [self.bookings removeAllObjects];
+        self.bookings = [[NSMutableArray alloc]init];
+        [self.tableView reloadData];
+        
+        DBConnect *conn = [[DBConnect alloc]init];
+        conn.delegate = self;
+        NSLog(@"called booking");
+        [conn GetBookingsForUser:app.userDetails[@"Email"]];
+        
+        [timer invalidate];
+        timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(checkBookingsCount) userInfo:nil repeats:NO];
+       
     }
+    
 
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+
 }
 
+-(void)checkBookingsCount
+{
+    if (self.bookings.count < 1) {
+        
+        self.backgroundView.center = self.view.center;
+        self.bgViewText.text = @"No Bookings found";
+        [self.tableView setBackgroundView:self.backgroundView];
+        
 
+    }
+    else
+    {
+        [self.tableView setBackgroundView:NULL];
+    }
+    
+    [self.tableView reloadData];
+    [timer invalidate];
+
+}
 -(void)bookingsDownloaded:(id)bookingOBj
 {
     [self.bookings addObject:bookingOBj];
@@ -109,6 +145,7 @@ UIActivityIndicatorView *loading;
                        [loading stopAnimating];
 
                    });
+    
 }
 
 -(void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
@@ -118,7 +155,6 @@ UIActivityIndicatorView *loading;
     if (position == 3)
     {
         [self.tableView setUserInteractionEnabled:TRUE];
-        [self update];
     }
     else if (position == 4)
     {
@@ -131,7 +167,6 @@ UIActivityIndicatorView *loading;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
  
     return self.bookings.count;
 }

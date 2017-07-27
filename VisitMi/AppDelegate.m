@@ -40,12 +40,12 @@ NSMutableArray *myPlaces;
     self.infoDict = [[NSBundle mainBundle] infoDictionary];
     self.serverAddress = self.infoDict[@"ServerAddress"];
     
+  
     //Load data from database
     DBConnect *conn = [[DBConnect alloc]init];
     [conn GetAppData];
-
     
-    
+        
     //Define Global settings
     [self defineGlobalSettings];
     
@@ -82,7 +82,7 @@ NSMutableArray *myPlaces;
     //get directory from app
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
-    NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+    NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
     NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
     
     //check if login file exists
@@ -90,6 +90,7 @@ NSMutableArray *myPlaces;
     if (fileExist)
     {
         NSLog(@"User already Logged in");
+        [conn GetCountries];
 
         self.userDetails = [NSDictionary dictionaryWithContentsOfFile:filePath];
         
@@ -99,7 +100,7 @@ NSMutableArray *myPlaces;
         //get directory from app
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *fileName = [[NSString alloc]initWithFormat:@"USERCOUNTRY.plist"];
-        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
         
         //specify file path
         NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
@@ -107,13 +108,7 @@ NSMutableArray *myPlaces;
         BOOL fileExist =  [fileManager fileExistsAtPath:filePath];
         if (fileExist)
         {
-            
             self.userCountry = [NSDictionary dictionaryWithContentsOfFile:filePath];
-            
-            //Download Country Image
-            NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@",self.serverAddress,self.userCountry[@"CountryImage"]];
-            NSURL *url = [NSURL URLWithString:urlStr];
-            self.countryImage = [NSData dataWithContentsOfURL:url];
             
         }
         
@@ -157,12 +152,11 @@ NSMutableArray *myPlaces;
                             
                             if ([PO.dbstatus isEqualToString:@"success"])
                             {
-                                [conn GetCountries];
                                 
                                 //get Image from storage
                                 //get directory from app
                                 NSFileManager *fileManager = [NSFileManager defaultManager];
-                                NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+                                NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
                                 NSString *imageName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.png"];
                                 
                                 NSString *imagePath = [fileDir stringByAppendingPathComponent:imageName];

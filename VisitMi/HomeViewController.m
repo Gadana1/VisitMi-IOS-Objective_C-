@@ -39,7 +39,7 @@ BOOL isOneWay;
     self.homeImage.image = NULL;
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
-    NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
 
     PlaceObject *PO = [[PlaceObject alloc]init];
     PO.delegate = self;
@@ -144,7 +144,12 @@ BOOL isOneWay;
     
     app.countryImage = imageDATA;
     
-    [self updateCountryImage];
+    dispatch_async(dispatch_get_main_queue(), ^(void)
+                   {
+                       [self updateCountryImage];
+
+                       
+                   });
 
     
 }
@@ -152,14 +157,26 @@ BOOL isOneWay;
 -(void)updateCountryImage
 {
     NSLog(@"Country Image loaded");
-    dispatch_async(dispatch_get_main_queue(), ^(void)
-                   {
-                       
-                       app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-                       self.homeImage.image = [UIImage imageWithData:app.countryImage];
-                       
-                       
-                   });
+    
+    app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    if (app.countryImage) {
+        
+        self.homeImage.image = [UIImage imageWithData:app.countryImage];
+
+    }
+    else
+    {
+        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+
+        PlaceObject *PO = [[PlaceObject alloc]init];
+        PO.delegate = self;
+        [PO downloadImages:urlStr :0 :app.userCountry[@"CountryName"] :0];
+        
+        
+        
+    }
+    
 
 }
 

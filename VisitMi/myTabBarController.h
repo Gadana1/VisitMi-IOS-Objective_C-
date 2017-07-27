@@ -18,7 +18,7 @@
 #import "UIViewAnimation.h"
 
 
-@interface myTabBarController : UITabBarController <UITableViewDelegate, dbConnDelegate, nearByDelegate,nearbyTableDelegate, hotelTableDelegate,dbConnDelegate, imageDelegate>
+@interface myTabBarController : UITabBarController <UITableViewDelegate, dbConnDelegate, nearByDelegate,nearbyTableDelegate, hotelTableDelegate,tourTableDelegate,dbConnDelegate, imageDelegate>
 
 @property (strong, nonatomic) AppDelegate *appDelegate ;
 

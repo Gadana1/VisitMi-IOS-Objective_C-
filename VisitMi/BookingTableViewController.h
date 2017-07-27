@@ -18,4 +18,9 @@
 
 @property (strong, nonatomic) NSMutableArray *bookings;
 
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgViewImage;
+@property (weak, nonatomic) IBOutlet UILabel *bgViewText;
+
+
 @end

@@ -17,11 +17,11 @@
 
 @property(strong, nonatomic)SVWebViewController *svwWebView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *homeImage;
-@property (weak, nonatomic) IBOutlet UIButton *nearByButton;
+@property (strong, nonatomic) IBOutlet UIImageView *homeImage;
+@property (strong, nonatomic) IBOutlet UIButton *nearByButton;
 
 @property (strong, nonatomic) IBOutlet UIButton *sidebarButton;
-@property (weak, nonatomic) IBOutlet UITableView *homeTableView;
+@property (strong, nonatomic) IBOutlet UITableView *homeTableView;
 
 @property (weak, nonatomic) IBOutlet UIView *homeItemsView;
 

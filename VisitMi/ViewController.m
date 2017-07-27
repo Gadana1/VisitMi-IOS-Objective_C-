@@ -69,7 +69,16 @@ UIActivityIndicatorView *loading ;
 
     PlaceObject *place = (PlaceObject *)[self.locData objectAtIndex:indexPath.row];
     
+    //dpwnload Imaes
+    if (!place.img) {
+        
+        place.delegate = self;
+        [place downloadImages:place.stateImage :0 :place.state :indexPath.row];
+
+    }
+    
     _locCell = [tableView dequeueReusableCellWithIdentifier:@"locCell" forIndexPath:indexPath];
+    
     
     _locCell.loc_NameLB.text = place.state;
     _locCell.loc_ImageView.contentMode = place.img!=NULL?UIViewContentModeScaleToFill:UIViewContentModeScaleAspectFit;
@@ -115,13 +124,7 @@ UIActivityIndicatorView *loading ;
 
 -(void)stateDownloaded:(id)placeObj
 {
-    NSLog(@"State delegate recieved");
     [self.locData addObject:placeObj];
-    
-    PlaceObject *PO = (PlaceObject *)placeObj;
-    PO.delegate = self;
-    [PO downloadImages:PO.stateImage :0 :PO.state :self.locData.count-1];
-
 
     dispatch_async(dispatch_get_main_queue(), ^(void)
     {

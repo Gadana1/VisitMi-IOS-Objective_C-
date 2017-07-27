@@ -24,7 +24,8 @@ UIActivityIndicatorView *loading ;
     self.proceedBT.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.proceedBT.layer.shadowOpacity = .5;
     self.proceedBT.layer.shadowRadius = 3.f;
-
+    [self.proceedBT setEnabled:NO];
+    
     loading = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [loading startAnimating];
     
@@ -59,7 +60,7 @@ UIActivityIndicatorView *loading ;
 
     tCell.ticketTypeTXT.text = TO.ticketType;
     tCell.currencyCodeTXT.text = TO.currencyCode;
-    tCell.ticketQtyTXT.text = [NSString stringWithFormat:@"%lu",tCell.quantity];
+    tCell.ticketQtyTXT.text = [NSString stringWithFormat:@"%lu",(long)tCell.quantity];
     tCell.ticketPriceTXT.text = [NSString stringWithFormat:@"%.2f",tCell.newPrice];
     [tCell.qtyStepper setContinuous:YES];
     
@@ -74,7 +75,7 @@ UIActivityIndicatorView *loading ;
       
         [self.ticketsTableView reloadData];
         [loading stopAnimating];
-
+        [self.proceedBT setEnabled:YES];
     });
 }
 
@@ -95,7 +96,7 @@ UIActivityIndicatorView *loading ;
         
         if (tCell.quantity !=0) {
             
-            [details appendFormat:@"%@ = %lu ",tCell.ticketTypeTXT.text,tCell.quantity];
+            [details appendFormat:@"%@ = %lu ",tCell.ticketTypeTXT.text,(long)tCell.quantity];
             
         }
         
@@ -116,7 +117,7 @@ UIActivityIndicatorView *loading ;
     //get directory from app
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
-    NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+    NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
     NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
     self.userDetailsFilePath = filePath;
     

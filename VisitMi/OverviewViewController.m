@@ -59,40 +59,31 @@
     self.scrollView.frame = containerFrame;
     [self.imageContainerView addSubview:_scrollView];
     
-    //Select Default Tab
-    containerFrame = self.referenceView.frame;
-    containerFrame.origin = CGPointMake(-2, 0);
-    self.infoView.frame = containerFrame;
-    selectedView = _infoView;
-    selectedButton = _infoBT;
-    [self showSelectedBT:selectedButton];
-    [self.referenceView addSubview:selectedView];
-
     
     //TabView Shadow
     self.tabView.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.tabView.layer.shadowOpacity = .5;
-    self.tabView.layer.shadowRadius = 3.f;
+    self.tabView.layer.shadowRadius = 4.f;
     
     //Circular Corner radius
-    [self.leftImg.layer setCornerRadius:10.0f];
+    [self.leftImg.layer setCornerRadius:self.leftImg.frame.size.height/2];
     [self.leftImg.layer setMasksToBounds:YES];
     self.leftImg.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.leftImg.layer.shadowOpacity = 1.0f;
-    self.leftImg.layer.shadowRadius = self.leftImg.bounds.size.width;
+    self.leftImg.layer.shadowRadius = 3;
     
-    [self.rightImg.layer setCornerRadius:10.0f];
+    [self.rightImg.layer setCornerRadius:self.rightImg.frame.size.height/2];
     [self.rightImg.layer setMasksToBounds:YES];
     self.rightImg.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.rightImg.layer.shadowOpacity = 1.0f;
-    self.rightImg.layer.shadowRadius = self.rightImg.bounds.size.width;
+    self.rightImg.layer.shadowOpacity = .5;
+    self.rightImg.layer.shadowRadius = 3;
     
         
     [self.tourCountLB.layer setCornerRadius:7.5f];
     [self.tourCountLB.layer setMasksToBounds:YES];
     self.tourCountLB.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.tourCountLB.layer.shadowOpacity = 1.0f;
-    self.tourCountLB.layer.shadowRadius = self.tourCountLB.bounds.size.width;
+    self.tourCountLB.layer.shadowOpacity = .5;
+    self.tourCountLB.layer.shadowRadius = 3;
     
     
     
@@ -157,7 +148,6 @@
     
     self.tourCell.favButton.tag = indexPath.row;
     [self.tourCell.favButton addTarget:self action:@selector(addItemToFavorites:) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@" Fav button item %lu ",self.tourCell.favButton.tag);
 
     
     //Assign colour to favourite button based on favourite availability
@@ -291,7 +281,6 @@
     if ([self checkIfFavrouite:sender.tag])
     {
         
-        NSLog(@" item %lu already a favourite ",sender.tag);
         
         
         
@@ -405,6 +394,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        //Select Default Tab
+        [self infoBTAction:self.infoBT];
+
+    });
+    
+    
+    if (self.delegate) {
+        
+        [self.delegate toScrollViewAction:self.tourTableView];
+    }
+    
     [self loadVisiblePages];
     
     // 5
@@ -448,6 +450,29 @@
 
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    
+    if (scrollView == self.tourTableView || scrollView == self.descTV)
+    {
+        if (self.contentsView.contentSize.height > self.contentsView.frame.size.height)
+        {
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:0.5];
+            [UIView setAnimationDelay:0];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            
+            [self.contentsView setContentOffset:CGPointMake(0,(self.contentsView.contentSize.height - self.contentsView.frame.size.height)) animated:YES];
+            
+            [UIView commitAnimations];
+            
+            
+        }
+        
+    }
+    
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
    
     if (scrollView == self.scrollView) {
@@ -456,7 +481,15 @@
         [self loadVisiblePages];
     
     }
-
+    else if (scrollView == self.tourTableView)
+    {
+        
+        if (self.delegate) {
+            
+            [self.delegate toScrollViewAction:self.tourTableView];
+        }
+    }
+   
 }
 
 //Tour Image delegate reference Method
@@ -555,7 +588,7 @@
         
         [selectedView removeFromSuperview];
         CGRect containerFrame = self.referenceView.frame;
-        containerFrame.origin = CGPointMake(-2, 0);
+        containerFrame.origin = CGPointMake(0, 0);
         self.infoView.frame = containerFrame;
         selectedView = _infoView;
         selectedButton =_infoBT;
@@ -572,7 +605,7 @@
         
         [selectedView removeFromSuperview];
         CGRect containerFrame = self.referenceView.frame;
-        containerFrame.origin = CGPointMake(-2, 0);
+        containerFrame.origin = CGPointMake(0, 0);
         self.contactView.frame = containerFrame;
         selectedView = _contactView;
         selectedButton =_contactBT;
@@ -590,7 +623,7 @@
         
         [selectedView removeFromSuperview];
         CGRect containerFrame = self.referenceView.frame;
-        containerFrame.origin = CGPointMake(-2, 0);
+        containerFrame.origin = CGPointMake(0, 0);
         self.toursView.frame = containerFrame;
         selectedView = _toursView;
         selectedButton =_toursBT;
@@ -624,16 +657,28 @@
                              style:UIAlertActionStyleCancel
                              handler:^(UIAlertAction * action)
                              {
+                                
                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                     
+                                     //Select Default Tab
+                                     [self contactBTAction:self.contactBT];
+                                     
+                                 });
+                                 
+
                              }];
         
         [alert addAction:ok];
         
         
         [self presentViewController:alert animated:YES completion:nil];
-    }
+        
+            }
     
 }
+
 
 
 - (void)didReceiveMemoryWarning {

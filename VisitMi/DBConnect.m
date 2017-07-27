@@ -31,19 +31,44 @@
 
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self != nil)
+    {
+        app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+
+        if([CheckInternet isInternetConnectionAvailable:@"http://api.visitmegh.com"])
+        {
+            app.serverAddress = @"http://api.visitmegh.com";
+
+        }
+        else
+        {
+            app.serverAddress = @"http://api.visitmegh.com";
+
+        }
+    
+    }
+    
+    return self;
+}
+
 -(void)GetAppData
 {
     
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/AppInfo.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/AppInfo.php",app.serverAddress];
+    
+    NSLog(@"%@",url);
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"DBKey=%@",app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -102,6 +127,7 @@
                                          [GMSPlacesClient provideAPIKey:app.googleServiceKey];
                                          
                                      }
+                                     else exit(0);
                                      
                                  }
                                  @catch (NSException *exception)
@@ -132,13 +158,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/TourDestinations.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourDestinations.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&loc_code=%@&forLoc=%d&DBKey=%@",countryCode,locCode,forLoc,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -215,13 +241,13 @@
 
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/TourDestWithName.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourDestWithName.php",app.serverAddress];
 
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"name=%@&countryCode=%@&DBKey=%@",tourDestName,countryCode,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -296,13 +322,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/Tours.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Tours.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&loc_code=%@&forLoc=%d&DBKey=%@",countryCode,locCode,forLoc,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -384,13 +410,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/ToursForLocation.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/ToursForLocation.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&lat=%f&lng=%f&maxDistance=%f&DBKey=%@",countryCode,lat,lng,maxDist,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -469,13 +495,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/TourWithID.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourWithID.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"tourID=%@&countryCode=%@&DBKey=%@",tourID,countryCode,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -553,13 +579,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/TourAvailabilities.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourAvailabilities.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"tourID=%@&countryCode=%@&DBKey=%@",tourID,countryCode,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -631,13 +657,13 @@
 
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/TourTickets.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourTickets.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"tourID=%@&countryCode=%@&DBKey=%@",tourID,countryCode,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -710,18 +736,21 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/States.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/States.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&type=%@&DBKey=%@",countryCode,type,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    
+    NSLog(@"%@",request.URL);
+
     
     if([CheckInternet isInternetConnectionAvailable:NULL])
     {
@@ -781,13 +810,15 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/Countries.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Countries.php",app.serverAddress];
+    NSLog(@"%@",url);
+
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"DBKey=%@",app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -806,41 +837,58 @@
                                  
                                  self._downloadedData = [[NSMutableData alloc] init];
                                  
-                                 // Append the newly downloaded data
-                                 if (data!=NULL || (!error)) {
+                                 @try
+                                 {
                                      
-                                     [self._downloadedData appendData:data];
-                                     
-                                     // Parse the JSON that came in
-                                     NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self._downloadedData options:NSJSONReadingAllowFragments error:&error];
-                                     
-                                     NSDictionary *countries = [jsonArray objectForKey:@"Countries"];
-                                     
-                                     
-                                     app.countries = [[NSMutableArray alloc]init];
-
-                                     for (NSDictionary *country in countries) {
+                                     // Append the newly downloaded data
+                                     if (data!=NULL || (!error)) {
+                                         
+                                         [self._downloadedData appendData:data];
+                                         
+                                         // Parse the JSON that came in
+                                         NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self._downloadedData options:NSJSONReadingAllowFragments error:&error];
+                                         
+                                         NSDictionary *countries = [jsonArray objectForKey:@"Countries"];
                                          
                                          
-                                         country_Code = [country valueForKey:@"countryCode"];
-                                         country_Name = [country valueForKey:@"countryName"];
-                                         dialing_Code = [country valueForKey:@"dialingCode"];
-                                         country_Image = [country valueForKey:@"countryImage"];
+                                         app.countries = [[NSMutableArray alloc]init];
                                          
-                                         PlaceObject *PO = [[PlaceObject alloc]initWithCountries:country_Code CountryName:country_Name DialingCode:dialing_Code CountryImage:country_Image];
-                                         
-                                         
-                                         [app.countries addObject:PO];
+                                         for (NSDictionary *country in countries) {
+                                             
+                                             
+                                             country_Code = [country valueForKey:@"countryCode"];
+                                             country_Name = [country valueForKey:@"countryName"];
+                                             dialing_Code = [country valueForKey:@"dialingCode"];
+                                             country_Image = [country valueForKey:@"countryImage"];
+                                             
+                                             PlaceObject *PO = [[PlaceObject alloc]initWithCountries:country_Code CountryName:country_Name DialingCode:dialing_Code CountryImage:country_Image];
+                                             
+                                             
+                                             [app.countries addObject:PO];
+                                             
+                                             
+                                         }
                                          
                                          
                                      }
+                                     else
+                                     {
+                                         exit(0);
+
+                                     }
                                      
+                                     if (self.delegate)
+                                     {
+                                         [self.delegate countriesDownloaded];
+                                     }
+
                                      
                                  }
-                                 
-                                 if (self.delegate)
+                                 @catch (NSException *exception)
                                  {
-                                     [self.delegate countriesDownloaded];
+                                     
+                                     exit(0);
+                                     
                                  }
                                  
                              }];
@@ -850,7 +898,14 @@
         
         
     }
-    
+    else
+    {
+        if (self.delegate)
+        {
+            [self.delegate countriesDownloaded];
+        }
+
+    }
 
 
     
@@ -864,13 +919,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/InterestType.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/InterestType.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&loc_code=%@&forLoc=%d&DBKey=%@",countryCode,locCode,forLoc,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -939,13 +994,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/Hotels.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Hotels.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"countryCode=%@&lat=%f&lng=%f&maxDistance=%f&DBKey=%@",countryCode,lat,lng,maxDist,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -976,56 +1031,59 @@
                                      NSDictionary *hotels = [jsonArray objectForKey:@"Hotels"];
                                      NSLog(@"Hotels count %d",(int)hotels.count);
                                      
-                                     for (NSDictionary *hotelinfo in hotels) {
-                                         
-                                         HotelObject *HO = [[HotelObject alloc]init];
-                                         
-                                         
-                                         HO.hotelTotal = (int)hotels.count;
-                                         HO.hotelID = hotelinfo[@"hotelId"]?hotelinfo[@"hotelId"]:NULL;
-                                         HO.name = hotelinfo[@"name"]?hotelinfo[@"name"]:NULL;
+                                    if(hotels.count > 0)
+                                    {
+                                        for (NSDictionary *hotelinfo in hotels) {
+                                            
+                                            HotelObject *HO = [[HotelObject alloc]init];
+                                            
+                                            
+                                            HO.hotelTotal = (int)hotels.count;
+                                            HO.hotelID = hotelinfo[@"hotelId"]?hotelinfo[@"hotelId"]:NULL;
+                                            HO.name = hotelinfo[@"name"]?hotelinfo[@"name"]:NULL;
+                                            
+                                            HO.state = hotelinfo[@"loc_name"]?hotelinfo[@"loc_name"]:NULL;
+                                            HO.city = hotelinfo[@"city"]?hotelinfo[@"city"]:NULL;
+                                            HO.streetAddress = hotelinfo[@"address"]?hotelinfo[@"address"]:NULL;
+                                            HO.latitude = [hotelinfo[@"latitude"] doubleValue ]?[ hotelinfo[@"latitude" ] doubleValue]:0;
+                                            HO.longitude = [hotelinfo[@"longitude" ] doubleValue]?[hotelinfo[@"longitude" ] doubleValue]:0;
+                                            HO.lowRate = [hotelinfo[@"lowRate"] doubleValue]?[hotelinfo[@"lowRate"] doubleValue]:0;
+                                            HO.rateCurrencyCode = hotelinfo[@"rateCurrencyCode"]?hotelinfo[@"rateCurrencyCode"]:NULL;
+                                            HO.starRating = hotelinfo[@"hotelStarRating"]?hotelinfo[@"hotelStarRating"]:NULL;
+                                            HO.thumbnailURL = hotelinfo[@"thumbnailURL"]?hotelinfo[@"thumbnailURL"]:NULL;
+                                            HO.detailURL = hotelinfo[@"deepLinkUrl"]?hotelinfo[@"deepLinkUrl"]:NULL;
+                                            
+                                            CLLocation *location = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
+                                            
+                                            CLLocation *destLocation = [[CLLocation alloc]initWithLatitude:HO.latitude  longitude:HO.longitude];
+                                            
+                                            HO.distance = [destLocation distanceFromLocation:location];
+                                            
+                                            int distance = floorf(HO.distance/1000);
+                                            
+                                            if (distance < 1) {
+                                                
+                                                HO.place_distance = [NSString stringWithFormat:@"%d m",(int)HO.distance];
+                                            }
+                                            
+                                            
+                                            else
+                                            {
+                                                HO.place_distance = [NSString stringWithFormat:@"%.2f km",HO.distance/1000];
+                                            }
+                                            
+                                            
+                                            if (self.delegate)
+                                            {
+                                                
+                                                [self.delegate hotelItemsDownloaded:HO :HO.hotelTotal];
+                                            }
+                                            
+                                            
+                                            
+                                        }
 
-                                         HO.state = hotelinfo[@"loc_name"]?hotelinfo[@"loc_name"]:NULL;
-                                         HO.city = hotelinfo[@"city"]?hotelinfo[@"city"]:NULL;
-                                         HO.streetAddress = hotelinfo[@"address"]?hotelinfo[@"address"]:NULL;
-                                         HO.latitude = [hotelinfo[@"latitude"] doubleValue ]?[ hotelinfo[@"latitude" ] doubleValue]:0;
-                                         HO.longitude = [hotelinfo[@"longitude" ] doubleValue]?[hotelinfo[@"longitude" ] doubleValue]:0;
-                                         HO.lowRate = [hotelinfo[@"lowRate"] doubleValue]?[hotelinfo[@"lowRate"] doubleValue]:0;
-                                         HO.rateCurrencyCode = hotelinfo[@"rateCurrencyCode"]?hotelinfo[@"rateCurrencyCode"]:NULL;
-                                         HO.starRating = hotelinfo[@"hotelStarRating"]?hotelinfo[@"hotelStarRating"]:NULL;
-                                         HO.thumbnailURL = hotelinfo[@"thumbnailURL"]?hotelinfo[@"thumbnailURL"]:NULL;
-                                         HO.detailURL = hotelinfo[@"deepLinkUrl"]?hotelinfo[@"deepLinkUrl"]:NULL;
-
-                                         CLLocation *location = [[CLLocation alloc]initWithLatitude:lat longitude:lng];
-                                         
-                                         CLLocation *destLocation = [[CLLocation alloc]initWithLatitude:HO.latitude  longitude:HO.longitude];
-                                         
-                                         HO.distance = [destLocation distanceFromLocation:location];
-                                         
-                                         int distance = floorf(HO.distance/1000);
-                                         
-                                         if (distance < 1) {
-                                             
-                                             HO.place_distance = [NSString stringWithFormat:@"%d m",(int)HO.distance];
-                                         }
-                                         
-                                         
-                                         else
-                                         {
-                                             HO.place_distance = [NSString stringWithFormat:@"%.2f km",HO.distance/1000];
-                                         }
-                                         
-                                         
-                                         if (self.delegate)
-                                         {
-                                             
-                                             [self.delegate hotelItemsDownloaded:HO :HO.hotelTotal];
-                                         }
-                                         
-                                        
-                                         
-                                     }
-                                     
+                                    }
                                      
                                      NSLog(@"TDS Json error = %@",error);
                                      
@@ -1048,7 +1106,8 @@
 
 -(void)GetBookingsForUser:(NSString *)useremail
 {
-    
+    NSLog(@"Bookings Download initiated");
+
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     if (useremail == NULL) {
@@ -1059,14 +1118,16 @@
         return;
     }
     
+    
+    
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/Bookings.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Bookings.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"email=%@&sessionID=%@&DBKey=%@",useremail,app.userDetails[@"SessionID"],app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1074,6 +1135,7 @@
     [request setHTTPBody:postData];
     
     
+
     if([CheckInternet isInternetConnectionAvailable:NULL])
     {
         
@@ -1093,6 +1155,7 @@
                                      NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:self._downloadedData options:NSJSONReadingAllowFragments error:&error];
                                      
                                      NSDictionary *bookings = [jsonArray objectForKey:@"Bookings"];
+                                     [app.userBookings  removeAllObjects];
                                      app.userBookings = [[NSMutableArray alloc]init];
 
                                      
@@ -1100,26 +1163,41 @@
                                          
                                          BookingObject *BO = [[BookingObject alloc]init];
                                          
-                                         BO.bookingID = bookingObj[@"bookingID"];
-                                         BO.passID = bookingObj[@"passID"];
-                                         BO.bookingTitle = bookingObj[@"bookingTitle"];
-                                         BO.bookingType = bookingObj[@"type"];
-                                         BO.bookingStatus = bookingObj[@"status"];
-                                         BO.bookingDate = bookingObj[@"bookingDate"];
-                                         BO.currencyCode = bookingObj[@"currencyCode"];
-                                         BO.price = [bookingObj[@"price"] doubleValue];
-                                         BO.bookingStatusColor = !BO.passID||[BO.passID isKindOfClass:[NSNull class]] ? [UIColor darkGrayColor]: [UIColor colorWithRed:.4 green:.7 blue:.4 alpha:.8];
+                                         if (bookingObj[@"bookingID"]) {
+                                             
+                                             BO.bookingID = bookingObj[@"bookingID"];
+                                             BO.passID = bookingObj[@"passID"];
+                                             BO.bookingTitle = bookingObj[@"bookingTitle"];
+                                             BO.bookingType = bookingObj[@"type"];
+                                             BO.bookingStatus = bookingObj[@"status"];
+                                             BO.bookingDate = bookingObj[@"bookingDate"];
+                                             BO.currencyCode = bookingObj[@"currencyCode"];
+                                             BO.price = [bookingObj[@"price"] doubleValue];
+                                             if ([BO.bookingStatus isEqualToString:@"Active"]) {
+                                                 
+                                                 BO.bookingStatusColor = [UIColor colorWithRed:.4 green:.7 blue:.4 alpha:.8];
+                                             }
+                                             else if ([BO.bookingStatus isEqualToString:@"Completed"])
+                                             {
+                                                 BO.bookingStatusColor = [UINavigationBar appearance].tintColor;
+                                             }
+                                             else
+                                             {
+                                                 BO.bookingStatusColor = [UIColor darkGrayColor];
+                                             }
+                                             
 
-                                         [app.userBookings addObject:BO];
-                                         app.bookingUpdated = true;
-
+                                         }
+                                         
                                          if (self.delegate)
                                          {
                                              [self.delegate bookingsDownloaded:BO];
                                          }
                                          
-                                         
+                                         [app.userBookings addObject:BO];
+
                                      }
+                                     app.bookingUpdated = true;
 
                                      
                                      NSLog(@"Bookings Json error = %@",error);
@@ -1146,13 +1224,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/BookingWithID.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/BookingWithID.php",app.serverAddress];
 
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"bookingID=%@&type=%@&sessionID=%@&DBKey=%@",bookingID,type,app.userDetails[@"SessionID"],app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1181,23 +1259,42 @@
                                      
                                      BookingObject *BO = [[BookingObject alloc]init];
                                      
-                                     BO.bookingID = bookingObj[@"bookingID"];
-                                     BO.passID = bookingObj[@"passID"];
-                                     BO.bookingTitle = bookingObj[@"title"];
-                                     BO.bookingType = bookingObj[@"type"];
-                                     BO.bookingDate = bookingObj[@"bookingDate"];
-                                     BO.bookingStatus = bookingObj[@"status"];
-                                     BO.currencyCode = bookingObj[@"currencyCode"];
-                                     BO.price = [bookingObj[@"price"] doubleValue];
-                                     BO.tourID = bookingObj[@"tourID"];
-                                     BO.tourImgUrl = bookingObj[@"tourImgUrl"];
-                                     BO.tourDetails = bookingObj[@"tourDetails"];
-                                     BO.tourDate = bookingObj[@"tourDate"];
-                                     BO.latitude = [bookingObj[@"latitude"] doubleValue];
-                                     BO.longitude = [bookingObj[@"longitude"] doubleValue];
-                                     BO.tourCountryCode = bookingObj[@"countryCode"];
+                                     if (bookingObj[@"bookingID"]) {
+                                         
+                                         BO.bookingID = bookingObj[@"bookingID"];
+                                         BO.passID = bookingObj[@"passID"];
+                                         BO.bookingTitle = bookingObj[@"title"];
+                                         BO.bookingType = bookingObj[@"type"];
+                                         BO.bookingDate = bookingObj[@"bookingDate"];
+                                         BO.bookingStatus = bookingObj[@"status"];
+                                         BO.currencyCode = bookingObj[@"currencyCode"];
+                                         BO.price = [bookingObj[@"price"] doubleValue];
+                                         BO.tourID = bookingObj[@"tourID"];
+                                         BO.tourImgUrl = bookingObj[@"tourImgUrl"];
+                                         BO.tourDetails = bookingObj[@"tourDetails"];
+                                         BO.tourDate = bookingObj[@"tourDate"];
+                                         BO.latitude = [bookingObj[@"latitude"] doubleValue];
+                                         BO.longitude = [bookingObj[@"longitude"] doubleValue];
+                                         BO.tourCountryCode = bookingObj[@"countryCode"];
+                                         if ([BO.bookingStatus isEqualToString:@"Active"]) {
+                                             
+                                             BO.bookingStatusColor = [UIColor colorWithRed:.4 green:.7 blue:.4 alpha:.8];
+                                         }
+                                         else if ([BO.bookingStatus isEqualToString:@"Completed"])
+                                         {
+                                             BO.bookingStatusColor = [UINavigationBar appearance].tintColor;
+                                         }
+                                         else
+                                         {
+                                             BO.bookingStatusColor = [UIColor darkGrayColor];
+                                         }
+                                         
+                                         BO.payment = (BOOL)[bookingObj[@"payment"] intValue];
+                                         NSLog(@"Payment %@",bookingObj[@"payment"]);
+                                         
 
-
+                                     }
+                                     
                                      if (self.delegate)
                                      {
                                          [self.delegate bookingsDownloaded:BO];
@@ -1230,13 +1327,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/RegisterUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/RegisterUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"firstname=%@&lastname=%@&email=%@&phonenumber=%@&password=%@&countryCode=%@&DBKey=%@",fname,lname,useremail,[phone stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"],password,countryCode,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1310,13 +1407,13 @@
     NSString *sessionID = [NSString stringWithFormat:@"%C%C%@",[[useremail uppercaseString] characterAtIndex:0],[[useremail uppercaseString] characterAtIndex:1],[self getRandomPINString:6]];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/LoginUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/LoginUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"email=%@&password=%@&sessionID=%@&DBKey=%@",useremail,password,sessionID,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1379,7 +1476,7 @@
                                          //get directory from app
                                          NSFileManager *fileManager = [NSFileManager defaultManager];
                                          NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
-                                         NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+                                         NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
                                          
                                          //check if File directoory has been created
                                          BOOL isDirectory;
@@ -1454,13 +1551,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/VerifyUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/VerifyUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"email=%@&sessionID=%@&DBKey=%@",useremail,sessionID,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1526,13 +1623,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/LogoutUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/LogoutUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"email=%@&sessionID=%@&DBKey=%@",useremail,sessionID,app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1570,32 +1667,26 @@
                                      PlaceObject *PO = [[PlaceObject alloc]initWithDbResponse:dbstatus Message:dbmessage];
                                      
                                      
-                                     if ([dbstatus isEqualToString:@"success"])
-                                     {
-                                         //Deleting PList file
-                                         NSFileManager *fileManager = [NSFileManager defaultManager];
-                                         NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
-                                         NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
-                                         NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
-                                         
-                                         if ([fileManager fileExistsAtPath:filePath])
-                                         {
-                                             NSError *error = nil;
-                                             [fileManager removeItemAtPath:filePath error:&error];
-
-                                             app.userDetails = NULL;
-                                             app.userImage = NULL;
-                                             app.bookingData = NULL;
-                                             [app.userBookings removeAllObjects];
-                                         }
-                                         
-                                     }
+                                     //Deleting PList file
+                                     NSFileManager *fileManager = [NSFileManager defaultManager];
+                                     NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
+                                     NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
+                                     NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
                                      
+                                     if ([fileManager fileExistsAtPath:filePath])
+                                     {
+                                         NSError *error = nil;
+                                         [fileManager removeItemAtPath:filePath error:&error];
+                                         
+                                         app.userDetails = NULL;
+                                         app.userImage = NULL;
+                                         app.bookingData = NULL;
+                                         [app.userBookings removeAllObjects];
+                                     }
                                      
                                      //Continue from saving login to File
                                      if (self.delegate)
                                      {
-                                         
                                          [self.delegate dbConnResponse:PO];
                                          
                                      }
@@ -1625,13 +1716,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/UpdateUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/UpdateUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"firstname=%@&lastname=%@&email=%@&phonenumber=%@&password=%@&currentPassword=%@&countryCode=%@&sessionID=%@&DBKey=%@",fname,lname,useremail,[phone stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"],newPassword,currentPassword,countryCode,app.userDetails[@"SessionID"],app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1732,13 +1823,13 @@
     NSString *bookingID = [NSString stringWithFormat:@"%C%C%@",[[useremail uppercaseString] characterAtIndex:0],[[useremail uppercaseString] characterAtIndex:1],[self getRandomPINString:6]];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/InsertTourBooking.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/InsertTourBooking.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"bookingID=%@&tourID=%@&bookingTitle=%@&email=%@&currencyCode=%@&price=%f&valueDate=%@&tourDetails=%@&sessionID=%@&DBKey=%@",bookingID,tourID,tourTitle,useremail,currencyCode,price,valueDate,tourDetails,app.userDetails[@"SessionID"],app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -1811,13 +1902,13 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"http://%@/VisitMi/app/CancelBooking.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/CancelBooking.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
     NSString *postString = [[NSString alloc]initWithFormat:@"bookingID=%@&sessionID=%@&DBKey=%@",bookingID,app.userDetails[@"SessionID"],app.infoDict[@"DBKey"]];
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];

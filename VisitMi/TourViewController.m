@@ -150,9 +150,11 @@ UIActivityIndicatorView *loading ;
     if (tableView == self.availTableView)
     {
         [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
-        if(![self.bookButton isEnabled])
+        if([self.bookButton isHidden])
         {
+            [self.bookButton fadeInObject:self.bookButton  duration:.1 option:UIViewAnimationOptionCurveEaseIn];
             [self.bookButton setEnabled:YES];
+
         }
     }
     
@@ -301,17 +303,13 @@ UIActivityIndicatorView *loading ;
 {
     self.imageDownloadCount++;
     
-    NSLog(@"Images to TVC Downloaded: IMG Count = %lu", self.imageDownloadCount);
-    
     dispatch_queue_t queue = dispatch_get_main_queue();
     dispatch_async(queue, ^(void){
         
         if (imageDATA!=NULL)
         {
             [self.imagesData addObject:imageDATA];
-            
-            NSLog(@"Image Animation about to be Initiated: Img count %lu",[self.imagesData count]);
-            
+                        
             if (self.tourImageView.image == NULL)
             {
                 self.tourImageView.image = [UIImage imageWithData:imageDATA];
@@ -437,9 +435,7 @@ UIActivityIndicatorView *loading ;
     
     
     //scrollview contentsize height = scrollview height + (detail container height - infoview tableview content height)
-    scrollContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, tableViewContentHieight + self.tabView.frame.size.height  + (self.detailsScrollView.frame.size.height - self.imageButton.frame.size.height));
-
-    //scrollContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, tableViewContentHieight + (self.detailsScrollView.frame.size.height - self.detailsContainer.frame.size.height));
+    scrollContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, tableViewContentHieight + self.tabView.bounds.size.height + self.imageButton.bounds.size.height);
     
     
     CGRect containerFrame = self.detailsContainer.frame;
@@ -466,11 +462,10 @@ UIActivityIndicatorView *loading ;
             [self.bookButton setEnabled:NO];
             [self.bookButton setHidden:YES];
             [self.availHeader setHidden:YES];
-            self.availPriceFooter.text = @"No currently available. Please try again later";
+            self.availPriceFooter.text = @"Not currently available. Please try again later";
         }
         else
         {
-            [self.bookButton setHidden:NO];
             [self.availHeader setHidden:NO];
             self.availPriceFooter.text = @"";
         }
@@ -501,7 +496,8 @@ UIActivityIndicatorView *loading ;
     NSLog(@"Tableview content height: %f",tableViewContentHieight);
     
     //scrollview contentsize height = scrollview height + (detail container height - infoview tableview content height)
-    scrollContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, tableViewContentHieight + self.tabView.frame.size.height + self.bookButton.frame.size.height + (self.detailsScrollView.frame.size.height - self.imageButton.frame.size.height));
+    scrollContentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, tableViewContentHieight + self.tabView.bounds.size.height + self.bookButton.frame.size.height  + self.imageButton.bounds.size.height);
+
     
     CGRect containerFrame = self.detailsContainer.frame;
     containerFrame.size = scrollContentSize;

@@ -88,19 +88,33 @@ UIActivityIndicatorView *loading ;
                        self.navigationItem.title = self.BO.bookingTitle;
 
                        self.bookingStatusLB.text = self.BO.bookingStatus;
-                       if (!self.BO.passID || [self.BO.passID isKindOfClass:[NSNull class]])
+                       self.statusView.backgroundColor = self.BO.bookingStatusColor;
+
+                       if ([self.BO.bookingStatus isEqualToString:@"Completed"] || [self.BO.bookingStatus isEqualToString:@"Cancelled"])
                        {
-                           self.statusView.backgroundColor = [UIColor darkGrayColor];
                            [self.activeItemsView setHidden:YES];
                            [self.cancelBT setHidden:YES];
+                
                        }
+                      
                        
                        if (![self.BO.tourCountryCode isEqualToString:appDelegate.userCountry[@"CountryCode"]]) {
                            
                            [self.infoBT setHidden:YES];
                            
                        }
-                       
+                       if(self.BO.payment)
+                       {
+                           self.paymentLB.text = @"Paid";
+                           [self.paymentLB setTextColor:[UIColor colorWithRed:.4 green:.7 blue:.4 alpha:.6]];
+                           
+                       }
+                       else
+                       {
+                           self.paymentLB.text = @"Unpaid";
+                           [self.paymentLB setTextColor:[UIColor darkGrayColor]];
+
+                       }
                        self.bookingDateLB.text =  self.BO.bookingDate;
                        self.tourTitleLB.text = self.BO.bookingTitle;
                        self.tourDateLB.text = self.BO.tourDate;

@@ -56,7 +56,7 @@ UIActivityIndicatorView *loading;
     {
         
         //Download Country Flag
-        NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@.png",_app.serverAddress,PO.country_Code];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@.png",_app.serverAddress,PO.country_Code];
         
         PO.delegate = self;
         [PO downloadImages:urlStr :0 :PO.country_Code :i];
@@ -124,7 +124,7 @@ UIActivityIndicatorView *loading;
         //get directory from app
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *fileName = [[NSString alloc]initWithFormat:@"1YDNELPSMISLOGIN1256.plist"];
-        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
         NSString *filePath = [fileDir stringByAppendingPathComponent:fileName];
         
         //check if login file exists
@@ -133,7 +133,7 @@ UIActivityIndicatorView *loading;
         {
             AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
             //Download Country Image
-            NSString *urlStr = [NSString stringWithFormat:@"http://%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+            NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
             NSURL *url = [NSURL URLWithString:urlStr];
             app.countryImage = [NSData dataWithContentsOfURL:url];
             
@@ -220,7 +220,7 @@ UIActivityIndicatorView *loading;
         //get directory from app
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *fileName = [[NSString alloc]initWithFormat:@"USERCOUNTRY.plist"];
-        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"AppData"];
+        NSString *fileDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/AppData"];
         
         //check if File directoory has been created
         BOOL isDirectory;

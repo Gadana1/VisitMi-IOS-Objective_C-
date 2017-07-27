@@ -153,7 +153,7 @@ NSArray* tmpArray;
                 [self.spinner stopAnimating];
                 [self.spinner setHidden:YES];
                 
-                NSString *badge = [[NSString alloc]initWithFormat:@"%lu",_presentCount];
+                NSString *badge = [[NSString alloc]initWithFormat:@"%lu",(unsigned long)_presentCount];
                 self.tabBarItem.badgeValue =badge;
                 
                 [self.tableView reloadData];
@@ -495,7 +495,7 @@ NSArray* tmpArray;
 
 -(void)openMapView: (UIButton *)sender
 {
-    NSLog(@"Loc button tapped Index %ld",sender.tag);
+    NSLog(@"Loc button tapped Index %ld",(long)sender.tag);
     
     NSUInteger row = sender.tag;
     
@@ -531,7 +531,7 @@ NSArray* tmpArray;
 -(void)openWebView: (UIButton *)sender
 {
     
-    NSLog(@"button tapped Index %ld",sender.tag);
+    NSLog(@"button tapped Index %ld",(long)sender.tag);
     
     NSUInteger row = sender.tag;
     

@@ -18,6 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    //[self.navigationController.navigationBar setTranslucent:NO];
+
+    self.tabBar.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
+    self.tabBar.layer.shadowOpacity = .6;
+    self.tabBar.layer.shadowRadius = 3.f;
+    self.tabBar.layer.shadowOffset = CGSizeMake(0, -2);
+    
+    self.overviewViewController.delegate = self;
     self.hotelViewController.delegate = self;
     self.nearbyTableViewController.delegate = self;
     self.hotelViewController.delegateForMap = self.mapViewController;
@@ -360,6 +370,13 @@
     
 }
 
+//Tour Scroll degelate
+-(void)toScrollViewAction:(UITableView *)tableView
+{
+    _selectedTableView = tableView;
+    
+    [self scrollViewAction:tableView];
+}
 
 //Hotel scroll Delegate
 -(void)hoScrollViewAction:(UITableView *)tableView
@@ -377,6 +394,9 @@
     [self scrollViewAction:tableView];
 
 }
+
+
+
 
 - (void)scrollViewAction:(UITableView *)tableView
 {
@@ -410,10 +430,17 @@
 
 - (IBAction)scrollUpAction:(id)sender
 {
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    dispatch_async(queue, ^(void){
+        
+        [self.selectedTableView scrollRectToVisible:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) animated:YES];
+        
+        NSLog(@"scrolled to tp");
+
+        
+    });
     
-    [self.selectedTableView scrollRectToVisible:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) animated:YES];
-    
-    NSLog(@"scrolled to tp");
+   
 }
 
 -(void)viewDidDisappear:(BOOL)animated

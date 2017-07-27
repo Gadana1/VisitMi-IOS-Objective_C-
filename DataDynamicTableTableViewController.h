@@ -88,7 +88,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bgViewImage;
 @property (weak, nonatomic) IBOutlet UILabel *bgViewText;
 
-@property (strong, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property(strong,nonatomic)NSMutableArray *rightBarItems;
 
 -(IBAction)fillterAction:(id)sender;

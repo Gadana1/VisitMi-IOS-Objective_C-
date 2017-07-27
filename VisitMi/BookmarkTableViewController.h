@@ -43,6 +43,10 @@
 @property(weak,nonatomic)UILabel *textlabel;
 @property(weak,nonatomic)UILabel *detailLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgViewImage;
+@property (weak, nonatomic) IBOutlet UILabel *bgViewText;
+
 
 @property (strong, nonatomic)  NSMutableArray *theFavorites;
 
