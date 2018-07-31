@@ -216,7 +216,7 @@
     {
         
         //Download Country Flag
-        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@.png",app.serverAddress,PO.country_Code];
+        NSString *urlStr = [NSString stringWithFormat:@"%@images/%@.png",app.serverAddress,PO.country_Code];
         
         PO.delegate = self;
         [PO downloadImages:urlStr :0 :PO.country_Code :i];

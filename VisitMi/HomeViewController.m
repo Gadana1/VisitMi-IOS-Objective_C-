@@ -39,7 +39,7 @@ BOOL isOneWay;
     self.homeImage.image = NULL;
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+    NSString *urlStr = [NSString stringWithFormat:@"%@images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
 
     PlaceObject *PO = [[PlaceObject alloc]init];
     PO.delegate = self;
@@ -167,7 +167,7 @@ BOOL isOneWay;
     }
     else
     {
-        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+        NSString *urlStr = [NSString stringWithFormat:@"%@images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
 
         PlaceObject *PO = [[PlaceObject alloc]init];
         PO.delegate = self;

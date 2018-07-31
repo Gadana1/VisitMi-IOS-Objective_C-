@@ -56,7 +56,7 @@ UIActivityIndicatorView *loading;
     {
         
         //Download Country Flag
-        NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@.png",_app.serverAddress,PO.country_Code];
+        NSString *urlStr = [NSString stringWithFormat:@"%@images/%@.png",_app.serverAddress,PO.country_Code];
         
         PO.delegate = self;
         [PO downloadImages:urlStr :0 :PO.country_Code :i];
@@ -133,7 +133,7 @@ UIActivityIndicatorView *loading;
         {
             AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
             //Download Country Image
-            NSString *urlStr = [NSString stringWithFormat:@"%@/VisitMi/images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
+            NSString *urlStr = [NSString stringWithFormat:@"%@images/%@",app.serverAddress,app.userCountry[@"CountryImage"]];
             NSURL *url = [NSURL URLWithString:urlStr];
             app.countryImage = [NSData dataWithContentsOfURL:url];
             

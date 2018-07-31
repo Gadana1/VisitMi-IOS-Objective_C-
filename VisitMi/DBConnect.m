@@ -38,14 +38,9 @@
     {
         app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
-        if([CheckInternet isInternetConnectionAvailable:@"http://api.visitmegh.com"])
+        if(![CheckInternet isInternetConnectionAvailable:app.serverAddress])
         {
-            app.serverAddress = @"http://api.visitmegh.com";
-
-        }
-        else
-        {
-            app.serverAddress = @"http://api.visitmegh.com";
+            app.serverAddress = @"http://staging.ebusgh.com/visitmi/api/";
 
         }
     
@@ -60,7 +55,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/AppInfo.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/AppInfo.php",app.serverAddress];
     
     NSLog(@"%@",url);
     
@@ -158,7 +153,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourDestinations.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/TourDestinations.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -241,7 +236,7 @@
 
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourDestWithName.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/TourDestWithName.php",app.serverAddress];
 
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -322,7 +317,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Tours.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/Tours.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -410,7 +405,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/ToursForLocation.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/ToursForLocation.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -495,7 +490,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourWithID.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/TourWithID.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -579,7 +574,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourAvailabilities.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/TourAvailabilities.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -657,7 +652,7 @@
 
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/TourTickets.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/TourTickets.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -736,7 +731,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/States.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/States.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -810,7 +805,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Countries.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/Countries.php",app.serverAddress];
     NSLog(@"%@",url);
 
     
@@ -919,7 +914,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/InterestType.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/InterestType.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -994,7 +989,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Hotels.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/Hotels.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1121,7 +1116,7 @@
     
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/Bookings.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/Bookings.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1224,7 +1219,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/BookingWithID.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/BookingWithID.php",app.serverAddress];
 
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1327,7 +1322,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/RegisterUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/RegisterUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1407,7 +1402,7 @@
     NSString *sessionID = [NSString stringWithFormat:@"%C%C%@",[[useremail uppercaseString] characterAtIndex:0],[[useremail uppercaseString] characterAtIndex:1],[self getRandomPINString:6]];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/LoginUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/LoginUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1551,7 +1546,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/VerifyUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/VerifyUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1623,7 +1618,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/LogoutUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/LogoutUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1716,7 +1711,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/UpdateUser.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/UpdateUser.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1823,7 +1818,7 @@
     NSString *bookingID = [NSString stringWithFormat:@"%C%C%@",[[useremail uppercaseString] characterAtIndex:0],[[useremail uppercaseString] characterAtIndex:1],[self getRandomPINString:6]];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/InsertTourBooking.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/InsertTourBooking.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];
@@ -1902,7 +1897,7 @@
     app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     // Download the json file
-    NSString *url = [[NSString alloc]initWithFormat:@"%@/VisitMi/app/CancelBooking.php",app.serverAddress];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@app/CancelBooking.php",app.serverAddress];
     
     NSURL *jsonFileUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:jsonFileUrl];

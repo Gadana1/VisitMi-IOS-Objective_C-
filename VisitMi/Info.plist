@@ -76,7 +76,7 @@
 		</dict>
 	</array>
 	<key>ServerAddress</key>
-	<string>http://api.visitmegh.com</string>
+	<string>https://staging.ebusgh.com/visitmi/api/</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
